@@ -1,44 +1,68 @@
 # Flutter Portfolio
 
-A portfolio made using Flutter for web. It is an easy to use Flutter portfolio template.
 
-## How to get started?
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Flutter App</title>
+</head>
+<body>
 
-Watch this video for a complete guide: https://youtu.be/jjm9AsenwP8
+  <h1>Portfolio Flutter App</h1>
+  <p>This project is a Flutter application developed to showcase a professional portfolio. The app aims to highlight your skills, projects, and experience, providing an intuitive and visually appealing way to present your work to potential employers or clients.</p>
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=jjm9AsenwP8" target="_blank"></a>
+  <h2>Features</h2>
+  <ul>
+    <li><strong>Information Sections:</strong> Displays various sections like "About Me," "Experience," "Projects," "Skills," and "Contact."</li>
+    <li><strong>Customizable User Interface:</strong> Uses modular and customizable widgets to adjust the visual design and fit your style.</li>
+    <li><strong>Offline Access:</strong> Allows access to information without an internet connection.</li>
+    <li><strong>Smooth Animations and Transitions:</strong> Enhances user experience and visually highlights key information.</li>
+    <li><strong>Cache Storage:</strong> Optimized to avoid unnecessary API calls.</li>
+  </ul>
 
-<p align="center">
-  <img src="http://img.youtube.com/vi/jjm9AsenwP8/mqdefault.jpg" alt="Watch the video" width="80%" height="60%" border="10" />
-</p>
+  <h2>Technologies</h2>
+  <ul>
+    <li><strong>Flutter:</strong> Main framework for cross-platform development.</li>
+    <li><strong>Dart:</strong> Programming language used with Flutter.</li>
+    <li><strong>Provider / BLoC Pattern:</strong> State management for organizing and modularizing code.</li>
+  </ul>
 
-**tl;dr**
-Fork the project -> Customise the data folder -> Deploy your app
+  <h2>Project Structure</h2>
+  <ul>
+    <li><strong>assets/</strong>: Folder for images and other media files.</li>
+    <li><strong>lib/</strong>: Main folder containing Flutter code, including:
+      <ul>
+        <li><strong>screens/</strong>: Main views for each portfolio section.</li>
+        <li><strong>widgets/</strong>: Reusable components.</li>
+        <li><strong>models/</strong>: Classes for structuring information on experience, projects, etc.</li>
+        <li><strong>providers/</strong>: State management using Provider/BLoC Pattern.</li>
+      </ul>
+    </li>
+  </ul>
 
-## Portfolio Demo
+  <h2>Installation</h2>
+  <ol>
+    <li>Clone this repository:
+      <pre><code>git clone https://github.com/your_username/portfolio_flutter.git</code></pre>
+    </li>
+    <li>Navigate to the project directory:
+      <pre><code>cd portfolio_flutter</code></pre>
+    </li>
+    <li>Install dependencies:
+      <pre><code>flutter pub get</code></pre>
+    </li>
+    <li>Run the application:
+      <pre><code>flutter run</code></pre>
+    </li>
+  </ol>
 
+  <h2>Contributions</h2>
+  <p>Contributions are welcome. If you have ideas to improve the app or want to add new features, feel free to fork the repository and submit a pull request.</p>
 
-https://user-images.githubusercontent.com/53579386/178040398-8f40f51b-3f4f-4e6f-92dc-fd285103c963.mp4
+  <h2>License</h2>
+  <p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
-
-## Design Inspiration
-
-![8330b312e7a90edc2a0a3c4f9c583733](https://user-images.githubusercontent.com/53579386/173894353-2de51f4f-3513-4729-9af2-fa68910b35a8.jpeg)
-
-
-
-
-## Featured by Flutter
-The Official Flutter Twitter handle quote retweeted the portfolio project (still under development then). Link to the tweet [here](https://twitter.com/FlutterDev/status/1547324991095586818).
-
-<p align="center">
-  <img width="599" alt="Aditya's Portfolio featured by the Google Flutter Team"
-   src="https://user-images.githubusercontent.com/53579386/216328354-ff78b058-1e46-4726-9762-4122edb95c8a.png">
-</p>
-
-
-## Liked this project?
-Thank you for making it this far! If you liked the project, please do give it a star.
-
-Also, you can nominate me for the *GitHub Star* program [here](https://stars.github.com/nominate/). 
-It only takes a minute, but would really help me expand my reach and contribute more with great projects like this. Thank you!
+</body>
+</html>
