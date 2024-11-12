@@ -26,7 +26,6 @@
   <ul>
     <li><strong>Flutter:</strong> Main framework for cross-platform development.</li>
     <li><strong>Dart:</strong> Programming language used with Flutter.</li>
-    <li><strong>Provider / BLoC Pattern:</strong> State management for organizing and modularizing code.</li>
   </ul>
 
   <h2>Project Structure</h2>
@@ -37,32 +36,12 @@
         <li><strong>screens/</strong>: Main views for each portfolio section.</li>
         <li><strong>widgets/</strong>: Reusable components.</li>
         <li><strong>models/</strong>: Classes for structuring information on experience, projects, etc.</li>
-        <li><strong>providers/</strong>: State management using Provider/BLoC Pattern.</li>
       </ul>
     </li>
   </ul>
 
-  <h2>Installation</h2>
-  <ol>
-    <li>Clone this repository:
-      <pre><code>git clone https://github.com/your_username/portfolio_flutter.git</code></pre>
-    </li>
-    <li>Navigate to the project directory:
-      <pre><code>cd portfolio_flutter</code></pre>
-    </li>
-    <li>Install dependencies:
-      <pre><code>flutter pub get</code></pre>
-    </li>
-    <li>Run the application:
-      <pre><code>flutter run</code></pre>
-    </li>
-  </ol>
 
-  <h2>Contributions</h2>
-  <p>Contributions are welcome. If you have ideas to improve the app or want to add new features, feel free to fork the repository and submit a pull request.</p>
 
-  <h2>License</h2>
-  <p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
 </body>
 </html>
