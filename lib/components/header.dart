@@ -27,12 +27,12 @@ class WebHeader extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: -150,
             child: CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage(
-                imagePath,
+              backgroundImage: NetworkImage(
+                'https://raw.githubusercontent.com/Sermio/Portfolio/refs/heads/main/assets/images/img.png',
               ),
             ),
           ),
