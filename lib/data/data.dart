@@ -9,7 +9,7 @@ Color kGradient2 = Colors.cyan;
 // Color kGradient1 = Colors.purple;
 // Color kGradient2 = Colors.pinkAccent;
 
-String imagePath = "images/img.png";
+String imagePath = "images/aditya.jpeg";
 
 //String data to modify
 String name = "Sergio Miguel";
