@@ -18,6 +18,50 @@ class MainSections extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
+
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              bool isSmallScreen = constraints.maxWidth <= 600;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!isSmallScreen)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          workFreelance2Title,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          workFreelance2Date,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    )
+                  else
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          workFreelance2Title,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          workFreelance2Date,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    )
+                ],
+              );
+            },
+          ),
+        ),
+        Text(workFreelance2Info),
+
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
           child: LayoutBuilder(

@@ -19,12 +19,17 @@ String username = "flutterroles";
 String resumeLink =
     "https://drive.google.com/file/d/1m43OglFcd4QVRFr4YcfwUwcurmwSVHsZ/view?usp=sharing";
 
+String workFreelance2Title = '''Freelance App Developer''';
+String workFreelance2Date = '''Oct 2024 – Currently''';
+String workFreelance2Info =
+    '''I am currently working developing customized phone apps with languages such as Kotlin and Flutter. Some of these apps incluse integrations with Google Maps API, Firebase notifications and GPS fetarues.''';
+
 String workSoteloTitle = '''Junior Software Developer - Sotelo S.L. (Spain)''';
 String workSoteloDate = '''May 2022 – Oct. 2024''';
 String workSoteloInfo =
     '''I worked in a multidisciplinary team with whom I have learned Vue.js, Python, React Native, and SCRUM. I have gained experience managing teams, coordinating projects and communicating with customers.''';
 
-String workFreelanceTitle = '''Freelancer''';
+String workFreelanceTitle = '''Freelancer App Developer''';
 String workFreelanceDate = '''Feb. 2022 – Apr. 2022''';
 String workFreelanceInfo =
     '''I developed the "Subasta Forestal" app using Flutter, managing its launch and updates on Google Play Store, with over 500 downloads. I also contributed to updates for the "SBC Gasolineras" and "Museo das Peregrinacións" apps in Native Java, enhancing fuel services and improving user interactivity within the museum.''';
@@ -56,6 +61,7 @@ List<Skill> skillsList = [
   Skill(name: "Git", percent: 0.85),
   Skill(name: "SCRUM", percent: 0.85),
   Skill(name: "Vue", percent: 0.75),
+  Skill(name: "Firebase", percent: 0.65),
   Skill(name: "Javascript", percent: 0.7),
   Skill(name: "Python", percent: 0.7),
   Skill(name: "Typescript", percent: 0.65),
