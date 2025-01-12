@@ -79,10 +79,10 @@ class References extends StatelessWidget {
                   Text(linkedin),
                   IconButton(
                       onPressed: () async {
-                        if (await canLaunchUrl(githubUrl)) {
-                          await launchUrl(githubUrl);
+                        if (await canLaunchUrl(linkedinUrl)) {
+                          await launchUrl(linkedinUrl);
                         } else {
-                          throw 'Could not launch $githubUrl';
+                          throw 'Could not launch $linkedinUrl';
                         }
                       },
                       icon: const Icon(Icons.link)),

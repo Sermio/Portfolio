@@ -17,7 +17,7 @@ String username = "flutterroles";
 
 //Link to resume on Google Drive
 String resumeLink =
-    "https://drive.google.com/file/d/1m43OglFcd4QVRFr4YcfwUwcurmwSVHsZ/view?usp=sharing";
+    "https://drive.google.com/file/d/1sGERMbV4qDKTRDyp2xrFvbz_ToKD42xy/view?usp=sharing";
 
 String workFreelance2Title = '''Freelance App Developer''';
 String workFreelance2Date = '''Oct 2024 – Currently''';
