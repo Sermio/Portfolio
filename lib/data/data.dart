@@ -12,38 +12,39 @@ Color kGradient2 = Colors.cyan;
 String imagePath = "images/aditya.jpeg";
 
 //String data to modify
-String name = "Sergio Miguel";
+String name = "Sergio Miguel Trabajo";
 String username = "flutterroles";
 
 //Link to resume on Google Drive
 String resumeLink =
-    "https://drive.google.com/file/d/1sGERMbV4qDKTRDyp2xrFvbz_ToKD42xy/view?usp=sharing";
+    "https://drive.google.com/file/d/19pDgAC_BBFeyyeuuk1i94uNGkr71OR2M/view?usp=sharing";
 
-String workFreelance2Title = '''Freelance App Developer''';
-String workFreelance2Date = '''Oct 2024 – Currently''';
+String workFreelance2Title = '''Freelancer - Apps Developer ''';
+String workFreelance2Date = '''Oct 2024 – Present''';
 String workFreelance2Info =
-    '''I am currently working developing customized phone apps with languages such as Kotlin and Flutter. Some of these apps incluse integrations with Google Maps API, Firebase notifications and GPS fetarues.''';
+    '''Design and development of cross-platform (Android and iOS) apps using Flutter and Kotlin.''';
 
-String workSoteloTitle = '''Junior Software Developer - Sotelo S.L. (Spain)''';
+String workSoteloTitle =
+    '''Software Engineer and Consultant - Sotelo S.L. (Spain)''';
 String workSoteloDate = '''May 2022 – Oct. 2024''';
 String workSoteloInfo =
-    '''I worked in a multidisciplinary team with whom I have learned Vue.js, Python, React Native, and SCRUM. I have gained experience managing teams, coordinating projects and communicating with customers.''';
+    '''I worked in a multidisciplinary team, where I learned Vue.js, Python, React Native, and SCRUM. This position also allowed me to develop strong skills in team management, project coordination and customer communication.''';
 
-String workFreelanceTitle = '''Freelancer App Developer''';
+String workFreelanceTitle = '''Freelance - Flutter Apps Developer''';
 String workFreelanceDate = '''Feb. 2022 – Apr. 2022''';
 String workFreelanceInfo =
-    '''I developed the "Subasta Forestal" app using Flutter, managing its launch and updates on Google Play Store, with over 500 downloads. I also contributed to updates for the "SBC Gasolineras" and "Museo das Peregrinacións" apps in Native Java, enhancing fuel services and improving user interactivity within the museum.''';
+    '''I developed and released the "Subasta Forestal" app using Flutter, with over 500 downloads. I responsible for the updates of "SBC Gasolineras" and "Museo das Peregrinacións" apps in Native Java/Kotlin.''';
 
-String workInternshipTitle = '''Internship - Servicios Reunidos S.L. (Spain)''';
+String workInternshipTitle =
+    '''Internship as Flutter Developer - Servicios Reunidos S.L. (Spain)''';
 String workInternshipDate = '''Sep. 2020 – Feb. 2022''';
 String workInternshipInfo =
-    '''As part of my bachelor’s thesis, I developed a Flutter application capable of extracting information from pictures using a neural network. It had also a website component in Vue.js.''';
+    '''As part of my Bachelor’s Thesis, I developed a Flutter app capable of extracting information from pictures using a neural network. It had also a website development in Vue.js''';
 
 String aboutMeSummary = '''
-I have a degree in Computer Engineering and over the past few years I have gained experience working as a freelancer and for different companies. I have worked with a team of people carrying out projects for multiple clients, which has taught me how to coordinate tasks, communicate clearly to convey problems and needs and handle customers in different languages. I have also worked on individual projects where I have learned to be autonomous, prioritize and meet deadlines.
+I am a Graduate in Computer Engineering with experience in both freelance and corporate development. I have worked both in teams and independently, acquiring skills in coordination, communication, and client management.
 
-My professional goal is to work in front-end applications, especially in mobile. I am eager to learn, to continue improving my knowledge and I am motivated to participate in new projects to put my skills into practice.
-''';
+I am eager to improve my skills in front-end development and contribute to innovative projects within a dynamic and productive corporate environment. ''';
 
 String location = "A Coruña (Spain)";
 String github = "My GitHub";
@@ -61,6 +62,7 @@ List<Skill> skillsList = [
   Skill(name: "Git", percent: 0.85),
   Skill(name: "SCRUM", percent: 0.85),
   Skill(name: "Vue", percent: 0.75),
+  Skill(name: "Firebase", percent: 0.75),
   Skill(name: "Firebase", percent: 0.65),
   Skill(name: "Javascript", percent: 0.7),
   Skill(name: "Python", percent: 0.7),
@@ -75,6 +77,9 @@ List<Skill> skillsList = [
   Skill(name: "Resolutive", percent: 0.85),
   Skill(name: "Organized", percent: 0.9),
   Skill(name: "Managment", percent: 0.8),
+  Skill(name: "Efficient", percent: 0.8),
+  Skill(name: "Proactive", percent: 0.8),
+  Skill(name: "Adaptability", percent: 0.8),
 ];
 
 List<Skill> languagesList = [
