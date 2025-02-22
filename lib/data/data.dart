@@ -105,4 +105,9 @@ List<Project> projectList = [
       description:
           "This application consists of monitoring points of sale in different locations. The information that can be obtained is varied, such as the existence of products, prices, store organization, etc.",
       link: "https://github.com/Sermio/Missions_app"),
+  Project(
+      name: "VaCar App",
+      description:
+          "VaCar is a mobile application developed in Flutter to streamline veterinary clinic management. It enables veterinarians to manage orders, schedule appointments, and maintain detailed records of clients and pets, enhancing efficiency and simplifying operations.",
+      link: "https://github.com/Sermio/VaCar"),
 ];

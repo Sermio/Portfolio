@@ -16,6 +16,7 @@ class ProjectsList extends StatelessWidget {
       child: SizedBox(
         width: screenWidth * 0.8,
         child: GridView.builder(
+          padding: const EdgeInsets.only(bottom: 20),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
