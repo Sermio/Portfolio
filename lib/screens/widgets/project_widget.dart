@@ -17,7 +17,7 @@ class ProjectWidget extends StatelessWidget {
     if (screenWidth <= 410) {
       maxLines = 1;
     } else if ((screenWidth >= 400) && (screenWidth <= 550)) {
-      maxLines = 2;
+      maxLines = 1;
     } else if (screenWidth >= 900 && screenWidth <= 1050) {
       maxLines = 3;
     } else if (screenWidth <= 1200) {
