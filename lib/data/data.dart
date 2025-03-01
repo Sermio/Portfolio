@@ -96,7 +96,7 @@ List<Project> projectList = [
           "The Monster Hunter App is a mobile application developed in Flutter that allows users to explore and discover information about monsters and decorations from the popular game Monster Hunter. The app features an intuitive interface that enables users to easily access details about the monsters, their abilities, and the game maps. ",
       link: "https://github.com/Sermio/MH_app"),
   Project(
-      name: "Subasta Forestal",
+      name: "Subasta Forestal App",
       description:
           "The Subasta Forestal application is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
       link: "https://github.com/Sermio/Subasta_forestal"),
@@ -110,4 +110,9 @@ List<Project> projectList = [
       description:
           "VaCar is a mobile application developed in Flutter to streamline veterinary clinic management. It enables veterinarians to manage orders, schedule appointments, and maintain detailed records of clients and pets, enhancing efficiency and simplifying operations.",
       link: "https://github.com/Sermio/VaCar"),
+  Project(
+      name: "WorldShift App",
+      description:
+          "The WorldShift Tribute Application is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
+      link: "https://github.com/Sermio/WD_filter"),
 ];

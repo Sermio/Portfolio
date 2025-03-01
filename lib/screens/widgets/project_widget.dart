@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/slideshow.dart';
 import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -78,6 +79,10 @@ class ProjectWidget extends StatelessWidget {
                 ),
               ),
             ),
+            // Slideshow(slides: [
+            //   Image.network(
+            //       'https://github.com/user-attachments/assets/82dcfb2b-90e1-458d-8e44-6a9a4695cd82')
+            // ])
           ],
         ),
       ),
