@@ -1,6 +1,3 @@
-This project was forked and modified from the original source: https://github.com/adityathakurxd/flutter_portfolio?ref=flutterawesome.com
-Thanks to theu author [adityathakurxd](https://github.com/adityathakurxd)
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +7,7 @@ Thanks to theu author [adityathakurxd](https://github.com/adityathakurxd)
 </head>
 <body>
 
-  <h1>Portfolio Flutter App</h1>
+ # [Portfolio Flutter App](https://sergio-mt-flutter-portfolio.web.app/)
   <p>This project is a Flutter application developed to showcase a professional portfolio. The app aims to highlight your skills, projects, and experience, providing an intuitive and visually appealing way to present your work to potential employers or clients.</p>
 
   <h2>Features</h2>
@@ -41,6 +38,8 @@ Thanks to theu author [adityathakurxd](https://github.com/adityathakurxd)
   </ul>
   
   <h2>License</h2>
+  This project was forked and modified from the original source: https://github.com/adityathakurxd/flutter_portfolio?ref=flutterawesome.com
+Thanks to theu author [adityathakurxd](https://github.com/adityathakurxd)
   <p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
 
 
