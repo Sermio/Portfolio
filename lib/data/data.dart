@@ -17,7 +17,7 @@ String username = "flutterroles";
 
 //Link to resume on Google Drive
 String resumeLink =
-    "https://drive.google.com/file/d/19pDgAC_BBFeyyeuuk1i94uNGkr71OR2M/view?usp=sharing";
+    "https://drive.google.com/file/d/1A4HtvJNK7FY0YaaYnpCt_j0oBg6IaX2W/view?usp=sharing";
 
 String workFreelance2Title = '''Freelancer - Apps Developer ''';
 String workFreelance2Date = '''Oct 2024 – Present''';
@@ -63,7 +63,6 @@ List<Skill> skillsList = [
   Skill(name: "SCRUM", percent: 0.85),
   Skill(name: "Vue", percent: 0.75),
   Skill(name: "Firebase", percent: 0.75),
-  Skill(name: "Firebase", percent: 0.65),
   Skill(name: "Javascript", percent: 0.7),
   Skill(name: "Python", percent: 0.7),
   Skill(name: "Typescript", percent: 0.65),
@@ -91,28 +90,128 @@ List<Skill> languagesList = [
 
 List<Project> projectList = [
   Project(
-      name: "Monster Hunter App",
+      name: "MHWilds Assistant",
       description:
-          "The Monster Hunter App is a mobile application developed in Flutter that allows users to explore and discover information about monsters and decorations from the popular game Monster Hunter. The app features an intuitive interface that enables users to easily access details about the monsters, their abilities, and the game maps. ",
-      link: "https://github.com/Sermio/MH_app"),
+          "The Monster Hunter Assistant is a mobile application developed in Flutter that allows users to explore and discover information about monsters and decorations from the popular game Monster Hunter Wilds. The app features an intuitive interface that enables users to easily access details about the monsters, their abilities, and the game maps.",
+      link: "https://github.com/Sermio/MHWilds_App",
+      images: [
+        "assets/images/MHWilds/1.png",
+        "assets/images/MHWilds/2.png",
+        "assets/images/MHWilds/3.png",
+        "assets/images/MHWilds/4.png",
+        "assets/images/MHWilds/5.png",
+        "assets/images/MHWilds/6.png",
+        "assets/images/MHWilds/7.png",
+        "assets/images/MHWilds/8.png",
+        "assets/images/MHWilds/9.png",
+      ]),
   Project(
-      name: "Subasta Forestal App",
-      description:
-          "The Subasta Forestal application is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
-      link: "https://github.com/Sermio/Subasta_forestal"),
-  Project(
-      name: "Missions App",
+      name: "Missions",
       description:
           "This application consists of monitoring points of sale in different locations. The information that can be obtained is varied, such as the existence of products, prices, store organization, etc.",
-      link: "https://github.com/Sermio/Missions_app"),
+      link: "https://github.com/Sermio/Missions_app",
+      images: [
+        "assets/images/Missions/1.png",
+        "assets/images/Missions/2.png",
+        "assets/images/Missions/3.png",
+        "assets/images/Missions/4.png",
+        "assets/images/Missions/5.png",
+        "assets/images/Missions/6.png",
+        "assets/images/Missions/7.png",
+        "assets/images/Missions/8.png",
+        "assets/images/Missions/9.png",
+        "assets/images/Missions/10.png",
+        "assets/images/Missions/11.png",
+        "assets/images/Missions/12.png",
+        "assets/images/Missions/13.png",
+        "assets/images/Missions/14.png",
+        "assets/images/Missions/15.png",
+      ]),
   Project(
-      name: "VaCar App",
+      name: "VaCar",
       description:
           "VaCar is a mobile application developed in Flutter to streamline veterinary clinic management. It enables veterinarians to manage orders, schedule appointments, and maintain detailed records of clients and pets, enhancing efficiency and simplifying operations.",
-      link: "https://github.com/Sermio/VaCar"),
+      link: "https://github.com/Sermio/VaCar",
+      images: [
+        "assets/images/Vacar/1.png",
+        "assets/images/Vacar/2.png",
+        "assets/images/Vacar/3.png",
+        "assets/images/Vacar/4.png",
+        "assets/images/Vacar/5.png",
+        "assets/images/Vacar/6.png",
+        "assets/images/Vacar/7.png",
+        "assets/images/Vacar/8.png",
+        "assets/images/Vacar/9.png",
+        "assets/images/Vacar/10.png",
+        "assets/images/Vacar/11.png",
+      ]),
   Project(
-      name: "WorldShift App",
+      name: "Monster Hunter",
+      description:
+          "The Monster Hunter is a mobile application developed in Flutter that allows users to explore and discover information about monsters and decorations from the popular game Monster Hunter. The app features an intuitive interface that enables users to easily access details about the monsters, their abilities, and the game maps. ",
+      link: "https://github.com/Sermio/MH_app",
+      images: [
+        "assets/images/MHW/1.png",
+        "assets/images/MHW/2.png",
+        "assets/images/MHW/3.png",
+        "assets/images/MHW/4.png",
+        "assets/images/MHW/5.png",
+        "assets/images/MHW/6.png",
+      ]),
+  Project(
+      name: "WorldShift",
       description:
           "The WorldShift Tribute Application is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
-      link: "https://github.com/Sermio/WD_filter"),
+      link: "https://github.com/Sermio/WD_filter",
+      images: [
+        "assets/images/Worldshift/1.png",
+        "assets/images/Worldshift/2.png",
+        "assets/images/Worldshift/3.png",
+        "assets/images/Worldshift/4.png",
+      ]),
+  Project(
+      name: "Diseños",
+      description:
+          "A mobile app that demonstrates a variety of custom UI designs and animations. This app serves as a showcase of different layouts and UI components like slideshows, list views, custom headers, custom progress bars, and more. Perfect for developers looking for inspiration or trying to implement similar designs in their own apps.",
+      link: "https://github.com/Sermio/disenos_app",
+      images: [
+        "assets/images/Disenos/1.png",
+        "assets/images/Disenos/2.png",
+        "assets/images/Disenos/3.png",
+        "assets/images/Disenos/4.png",
+        "assets/images/Disenos/5.png",
+        "assets/images/Disenos/6.png",
+      ]),
+  Project(
+      name: "QR scanner",
+      description:
+          "This app allows users to scan QR codes quickly and efficiently. By using the camera on a mobile device, the app can detect and interpret QR codes, providing users with the possibility to send encoded data from the QR code to a backend. The app features an intuitive interface, with easy-to-use functionality for both beginners and advanced users. It also ensures security and privacy by not storing or sharing scanned information without user consent.",
+      link: "https://github.com/Sermio/QR_scan",
+      images: [
+        "assets/images/QRScan/1.png",
+        "assets/images/QRScan/2.png",
+        "assets/images/QRScan/3.png",
+        "assets/images/QRScan/4.png",
+        "assets/images/QRScan/5.png",
+      ]),
+  Project(
+      name: "Subasta Forestal",
+      description:
+          "The Subasta Forestal application is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
+      link: "https://github.com/Sermio/Subasta_forestal",
+      images: [
+        "assets/images/SubastaForestal/1.png",
+        "assets/images/SubastaForestal/2.png",
+        "assets/images/SubastaForestal/3.png",
+        "assets/images/SubastaForestal/4.png",
+      ]),
+  Project(
+      name: "Shoes",
+      description:
+          "A mobile app that allows users to view a product with the option to select different colors and interactive animations to enhance the user experience.",
+      link: "https://github.com/Sermio/ShoesApp",
+      images: [
+        "assets/images/Shoes/1.png",
+        "assets/images/Shoes/2.png",
+      ]),
 ];

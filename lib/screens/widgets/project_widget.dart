@@ -1,88 +1,117 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/slideshow.dart';
-import 'package:portfolio/constants/constants.dart';
-import 'package:portfolio/utils/extensions.dart';
+import 'package:portfolio/models/project_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/project_model.dart';
-
 class ProjectWidget extends StatelessWidget {
-  final Project projectData;
-  const ProjectWidget({super.key, required this.projectData});
+  final Project project;
+
+  const ProjectWidget({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    int maxLines;
-
-    if (screenWidth <= 410) {
-      maxLines = 1;
-    } else if ((screenWidth >= 400) && (screenWidth <= 550)) {
-      maxLines = 1;
-    } else if (screenWidth >= 900 && screenWidth <= 1050) {
-      maxLines = 3;
-    } else if (screenWidth <= 1200) {
-      maxLines = 4;
-    } else {
-      maxLines = 6;
-    }
-
-    return SizedBox(
-      width: context.screenConstraint().width * 0.4,
-      child: Card(
+    return Container(
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  // Icon(
-                  //   Icons.build,
-                  //   color: kGrey,
-                  //   size: 18,
-                  // ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      projectData.name,
-                      style: kSectionTitleText,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final Uri url = Uri.parse(projectData.link);
-                        await launchUrl(url);
-                      },
+            Wrap(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "View",
-                        style: kSubTitleText.copyWith(color: Colors.white),
+                        project.name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          if (await canLaunch(project.link)) {
+                            await launch(project.link);
+                          } else {
+                            throw 'Could not launch ${project.link}';
+                          }
+                        },
+                        child: const Text(
+                          "View",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 100,
-                ),
-                child: Text(
-                  projectData.description,
-                  maxLines: maxLines,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 14),
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                project.description,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            // Slideshow(slides: [
-            //   Image.network(
-            //       'https://github.com/user-attachments/assets/82dcfb2b-90e1-458d-8e44-6a9a4695cd82')
-            // ])
+            if (project.images.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CarouselSlider(
+                  items: project.images.map((img) {
+                    return GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => Dialog(
+                            child: Image.asset(
+                              img,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        img,
+                        fit: BoxFit.cover,
+                        width: 150,
+                      ),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.2,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                    enlargeCenterPage: true,
+                    enlargeFactor: project.images.length < 5 ? 0.5 : 0.3,
+                    scrollDirection: Axis.horizontal,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
