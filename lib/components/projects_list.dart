@@ -10,7 +10,9 @@ class ProjectsList extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = context.screenConstraint().width;
 
-    int crossAxisCount = screenWidth > 900 ? 2 : 1;
+    int crossAxisCount = screenWidth > 1010 ? 2 : 1;
+
+    double aspectRatio = screenWidth > 510 ? 1.6 : 1.3;
 
     return Center(
       child: SizedBox(
@@ -20,12 +22,14 @@ class ProjectsList extends StatelessWidget {
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            childAspectRatio: screenWidth > 1780 ? 5 : 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: (aspectRatio - 0.3),
           ),
           itemCount: projectList.length,
           itemBuilder: (BuildContext context, int index) {
             return ProjectWidget(
-              projectData: projectList[index],
+              project: projectList[index],
             );
           },
         ),
