@@ -214,4 +214,12 @@ List<Project> projectList = [
         "assets/images/Shoes/1.png",
         "assets/images/Shoes/2.png",
       ]),
+  Project(
+      name: "Music Player",
+      description:
+          "Music player app with animated visualizations, an intuitive interface, and responsive design, built with Flutter and state managed using Provider.",
+      link: "https://github.com/Sermio/music_player",
+      images: [
+        "assets/images/MusicPlayer/1.png",
+      ]),
 ];
