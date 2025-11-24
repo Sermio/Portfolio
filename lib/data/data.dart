@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/models/project_model.dart';
 import 'package:portfolio/models/skill.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 //Update with colors of your choice for dp background gradient
 Color kGradient1 = Colors.blue.shade900;
@@ -19,8 +18,13 @@ String username = "flutterroles";
 String resumeLink =
     "https://drive.google.com/file/d/1A4HtvJNK7FY0YaaYnpCt_j0oBg6IaX2W/view?usp=sharing";
 
+String workAdcomunidadTitle = '''Flutter Lead Developer - ADCOMUNIDAD (Spain)''';
+String workAdcomunidadDate = '''Jun 2025 – Present''';
+String workAdcomunidadInfo =
+    '''As the Lead Developer, I take charge of the entire development and design process for cross-platform mobile apps with Flutter. My role encompasses every phase from initial architecture to product launch, including UI/UX design, building scalable and modular frameworks, developing reusable UI components, managing state with Provider and BLoC patterns, integrating REST APIs and Firebase services, and overseeing testing, CI/CD, and deployment to Google Play and App Store.''';
+
 String workFreelance2Title = '''Freelancer - Apps Developer ''';
-String workFreelance2Date = '''Oct 2024 – Present''';
+String workFreelance2Date = '''Oct 2024 – May 2025''';
 String workFreelance2Info =
     '''Design and development of cross-platform (Android and iOS) apps using Flutter and Kotlin.''';
 
@@ -58,27 +62,27 @@ String phone = "+34 606683231";
 List<Skill> skillsList = [
   // Habilidades Técnicas (ordenadas por porcentaje)
   Skill(name: "Flutter", percent: 0.95),
-  Skill(name: "Dart", percent: 0.9),
-  Skill(name: "Git", percent: 0.85),
-  Skill(name: "SCRUM", percent: 0.85),
-  Skill(name: "Vue", percent: 0.75),
+  Skill(name: "Dart", percent: 0.95),
+  Skill(name: "Git", percent: 0.9),
   Skill(name: "Firebase", percent: 0.75),
+  Skill(name: "SCRUM", percent: 0.75),
   Skill(name: "Javascript", percent: 0.7),
-  Skill(name: "Python", percent: 0.7),
+  Skill(name: "Vue", percent: 0.7),
+  Skill(name: "Python", percent: 0.65),
   Skill(name: "Typescript", percent: 0.65),
-  Skill(name: "ReactNative", percent: 0.65),
-  Skill(name: "Java", percent: 0.6),
+  Skill(name: "ReactNative", percent: 0.6),
   Skill(name: "Kotlin", percent: 0.6),
+  Skill(name: "Java", percent: 0.55),
 
   // Habilidades Blandas (ordenadas por porcentaje)
   Skill(name: "Cooperative", percent: 0.9),
   Skill(name: "Collaborator", percent: 0.9),
-  Skill(name: "Resolutive", percent: 0.85),
   Skill(name: "Organized", percent: 0.9),
-  Skill(name: "Managment", percent: 0.8),
-  Skill(name: "Efficient", percent: 0.8),
-  Skill(name: "Proactive", percent: 0.8),
-  Skill(name: "Adaptability", percent: 0.8),
+  Skill(name: "Resolutive", percent: 0.9),
+  Skill(name: "Managment", percent: 0.85),
+  Skill(name: "Efficient", percent: 0.85),
+  Skill(name: "Proactive", percent: 0.85),
+  Skill(name: "Adaptability", percent: 0.85),
 ];
 
 List<Skill> languagesList = [

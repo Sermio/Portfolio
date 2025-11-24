@@ -33,6 +33,13 @@ class MainSections extends StatelessWidget {
         const SizedBox(height: 32),
 
         _ExperienceCard(
+          title: workAdcomunidadTitle,
+          date: workAdcomunidadDate,
+          description: workAdcomunidadInfo,
+        ),
+        const SizedBox(height: 20),
+
+        _ExperienceCard(
           title: workFreelance2Title,
           date: workFreelance2Date,
           description: workFreelance2Info,
@@ -140,6 +147,13 @@ class MainSectionsWithoutSkills extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 32),
+
+        _ExperienceCard(
+          title: workAdcomunidadTitle,
+          date: workAdcomunidadDate,
+          description: workAdcomunidadInfo,
+        ),
+        const SizedBox(height: 20),
 
         _ExperienceCard(
           title: workFreelance2Title,
