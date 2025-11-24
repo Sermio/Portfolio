@@ -12,26 +12,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Row(
-      //     children: [
-      //       Icon(
-      //         Icons.circle_sharp,
-      //         size: 12,
-      //         color: Colors.black,
-      //       ),
-      //       SizedBox(
-      //         width: 10,
-      //       ),
-      //       Text(
-      //         "Sergio Miguel Trabajo",
-      //         style: TextStyle(color: Colors.black),
-      //       )
-      //     ],
-      //   ),
-      //   // foregroundColor: Colors.black,
-      //   backgroundColor: Colors.white,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
