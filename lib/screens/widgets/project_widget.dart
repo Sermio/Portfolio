@@ -15,242 +15,80 @@ class ProjectWidget extends StatefulWidget {
 
 class _ProjectWidgetState extends State<ProjectWidget> {
   bool _isHovered = false;
-  bool _showDescription = false;
   int _currentImageIndex = 0;
   final CarouselSliderController _carouselController = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 768;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: ConstrainedBox(
+      child: Container(
         constraints: const BoxConstraints(
-          maxWidth: 400, // Ancho máximo de la card
+          maxWidth: 600,
         ),
-        child: AspectRatio(
-          aspectRatio: 9 / 16, // Proporción típica de imágenes móviles
-          child: AnimatedContainer(
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeInOut,
+        margin: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: _showDescription ? theme.cardColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: _isHovered
-                ? AppTheme.primaryColor.withOpacity(0.4)
-                : theme.dividerColor.withOpacity(0.1),
-            width: _isHovered ? 2.5 : 1,
-          ),
+          color: theme.cardColor,
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: _isHovered
-                  ? AppTheme.primaryColor.withOpacity(0.15)
-                  : Colors.black.withOpacity(0.05),
+                  ? AppTheme.primaryColor.withOpacity(0.2)
+                  : Colors.black.withOpacity(0.08),
+              blurRadius: _isHovered ? 24 : 12,
               spreadRadius: _isHovered ? 2 : 0,
-              blurRadius: _isHovered ? 15 : 8,
-              offset: Offset(0, _isHovered ? 8 : 4),
+              offset: Offset(0, _isHovered ? 12 : 6),
             ),
           ],
         ),
-        child: Stack(
-          children: [
-            // Contenido de la imagen (carrusel) - ocupa toda la card
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: AnimatedOpacity(
-                opacity: _showDescription ? 0 : 1,
-                duration: const Duration(milliseconds: 300),
-                child: _showDescription
-                    ? const SizedBox.shrink()
-                    : _buildImageCarousel(theme),
-              ),
-            ),
-            // Contenido de la descripción
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: AnimatedOpacity(
-                  opacity: _showDescription ? 1 : 0,
-                  duration: const Duration(milliseconds: 300),
-                  child: _showDescription
-                      ? _buildDescriptionContent(theme)
-                      : const SizedBox.shrink(),
-                ),
-              ),
-            ),
-            // Indicadores del carrusel superpuestos (solo cuando se muestran imágenes)
-            if (!_showDescription && widget.project.images.length > 1)
-              Positioned(
-                bottom: 80,
-                left: 0,
-                right: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: widget.project.images.asMap().entries.map((entry) {
-                    return GestureDetector(
-                      onTap: () => _carouselController.animateToPage(entry.key),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        width: _currentImageIndex == entry.key ? 24 : 8,
-                        height: 8,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: _currentImageIndex == entry.key
-                              ? Colors.black
-                              : Colors.black.withOpacity(0.4),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            // Botones superpuestos
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Botón para ver descripción/imagen (siempre visible)
-                    if (!_showDescription)
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _showDescription = !_showDescription;
-                              });
-                            },
-                            borderRadius: BorderRadius.circular(12),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.info_outline,
-                                    size: 18,
-                                    color: Colors.black,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    "+Info",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    // Flecha para volver (solo visible cuando se muestra la descripción)
-                    if (_showDescription)
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _showDescription = !_showDescription;
-                              });
-                            },
-                            borderRadius: BorderRadius.circular(12),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Icon(
-                                Icons.arrow_back,
-                                size: 20,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    // Botón para ver proyecto (solo visible cuando se muestra la descripción)
-                    if (_showDescription) ...[
-                      const SizedBox(width: 12),
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          final Uri url = Uri.parse(widget.project.link);
-                          await launchUrl(url, mode: LaunchMode.externalApplication);
-                        },
-                        icon: const Icon(Icons.open_in_new, size: 18),
-                        label: const Text("Ver Proyecto"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.primaryColor,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          elevation: _isHovered ? 8 : 4,
-                          shadowColor: AppTheme.primaryColor.withOpacity(0.4),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: isMobile ? _buildMobileLayout(theme) : _buildDesktopLayout(theme),
         ),
       ),
     );
   }
 
-  Widget _buildImageCarousel(ThemeData theme) {
+  Widget _buildDesktopLayout(ThemeData theme) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Sección de imágenes (lado izquierdo)
+        Expanded(
+          flex: 5,
+          child: _buildImageSection(theme, height: 400),
+        ),
+        // Sección de información (lado derecho)
+        Expanded(
+          flex: 4,
+          child: _buildInfoSection(theme),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Sección de imágenes (arriba)
+        _buildImageSection(theme, height: 300),
+        // Sección de información (abajo)
+        _buildInfoSection(theme),
+      ],
+    );
+  }
+
+  Widget _buildImageSection(ThemeData theme, {required double height}) {
     if (widget.project.images.isEmpty) {
       return Container(
-        height: 500,
+        height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -270,60 +108,108 @@ class _ProjectWidgetState extends State<ProjectWidget> {
       );
     }
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return ClipRect(
-          child: SizedBox(
-            width: double.infinity,
-            height: constraints.maxHeight,
-            child: CarouselSlider(
-              carouselController: _carouselController,
-              items: widget.project.images.map((img) {
-                return Container(
+    return Stack(
+      children: [
+        SizedBox(
+          height: height,
+          width: double.infinity,
+          child: CarouselSlider(
+            carouselController: _carouselController,
+            items: widget.project.images.map((img) {
+              return Container(
+                width: double.infinity,
+                height: height,
+                color: Colors.black.withOpacity(0.02),
+                child: Image.asset(
+                  img,
+                  fit: BoxFit.contain,
                   width: double.infinity,
-                  height: constraints.maxHeight,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    img,
-                    fit: BoxFit.contain,
-                    width: double.infinity,
-                    height: double.infinity,
+                  height: double.infinity,
+                ),
+              );
+            }).toList(),
+            options: CarouselOptions(
+              height: height,
+              viewportFraction: 1.0,
+              initialPage: 0,
+              enableInfiniteScroll: widget.project.images.length > 1,
+              autoPlay: widget.project.images.length > 1,
+              autoPlayInterval: const Duration(seconds: 4),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.easeInOut,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentImageIndex = index;
+                });
+              },
+            ),
+          ),
+        ),
+        // Indicadores del carrusel
+        if (widget.project.images.length > 1)
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.project.images.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () => _carouselController.animateToPage(entry.key),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: _currentImageIndex == entry.key ? 32 : 8,
+                    height: 8,
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: _currentImageIndex == entry.key
+                          ? Colors.white
+                          : Colors.white.withOpacity(0.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }).toList(),
-              options: CarouselOptions(
-                height: constraints.maxHeight,
-                viewportFraction: 1.0,
-                initialPage: 0,
-                enableInfiniteScroll: widget.project.images.length > 1,
-                autoPlay: widget.project.images.length > 1 && !_showDescription,
-                autoPlayInterval: const Duration(seconds: 5),
-                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-                autoPlayCurve: Curves.easeInOutCubic,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _currentImageIndex = index;
-                  });
-                },
+            ),
+          ),
+        // Overlay de hover
+        if (_isHovered)
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.3),
+                  ],
+                ),
               ),
             ),
           ),
-        );
-      },
+      ],
     );
   }
 
-  Widget _buildDescriptionContent(ThemeData theme) {
+  Widget _buildInfoSection(ThemeData theme) {
     return Container(
-      height: 500,
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
+          // Título del proyecto
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -331,19 +217,19 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                       AppTheme.secondaryColor.withOpacity(0.15),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
-                  Icons.code,
+                  Icons.code_rounded,
                   color: AppTheme.primaryColor,
-                  size: 24,
+                  size: 20,
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   widget.project.name,
-                  style: theme.textTheme.displaySmall?.copyWith(
+                  style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.onSurface,
                     letterSpacing: -0.5,
@@ -352,16 +238,38 @@ class _ProjectWidgetState extends State<ProjectWidget> {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+          // Descripción
+          Text(
+            widget.project.description,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.6,
+              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              fontSize: 14,
+            ),
+            maxLines: 6,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(height: 24),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Text(
-                widget.project.description,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  height: 1.8,
-                  color: theme.colorScheme.onSurface.withOpacity(0.8),
-                  fontSize: 16,
+          // Botón de acción
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () async {
+                final Uri url = Uri.parse(widget.project.link);
+                await launchUrl(url, mode: LaunchMode.externalApplication);
+              },
+              icon: const Icon(Icons.open_in_new, size: 18),
+              label: const Text("Ver Proyecto"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.primaryColor,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
+                elevation: _isHovered ? 6 : 2,
+                shadowColor: AppTheme.primaryColor.withOpacity(0.3),
               ),
             ),
           ),
