@@ -11,31 +11,33 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const WebHeader(),
+            const SizedBox(height: 40),
             Center(
-                child: Text(
-              name,
-              style: kTitleText,
-            )),
-            // Center(
-            //     child: Text(
-            //   "@$username",
-            //   style: kSubTitleText,
-            // )),
-            const SizedBox(
-              height: 10,
+              child: Text(
+                name,
+                style: theme.textTheme.displayMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.5,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
+            const SizedBox(height: 32),
             const ResumeContactButtons(),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 64),
             const MainContent(),
+            const SizedBox(height: 48),
             const ProjectsList(),
+            const SizedBox(height: 64),
           ],
         ),
       ),

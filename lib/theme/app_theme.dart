@@ -8,7 +8,7 @@ class AppTheme {
   static const Color accentColor = Color(0xFF06B6D4); // Cyan
   
   // Colores para modo claro
-  static const Color lightBackground = Color(0xFFFAFAFA);
+  static const Color lightBackground = Colors.white;
   static const Color lightSurface = Colors.white;
   static const Color lightText = Color(0xFF1F2937);
   static const Color lightTextSecondary = Color(0xFF6B7280);

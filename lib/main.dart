@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/screens/home_screen.dart';
+import 'package:portfolio/theme/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Sergio's portfolio",
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          elevatedButtonTheme: elevatedButtonThemeData),
+      theme: AppTheme.lightTheme,
       home: const HomeScreen(),
     );
   }

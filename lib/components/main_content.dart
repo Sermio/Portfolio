@@ -8,28 +8,44 @@ class MainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: context.screenConstraint().width * 0.8,
-        child: context.screenConstraint().width > 1200
-            ? const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    flex: 3,
-                    child: MainSections(),
-                  ),
-                  SizedBox(width: 40),
-                  Flexible(flex: 1, child: References()),
-                ],
-              )
-            : const Column(
-                children: [
-                  MainSections(),
-                  References(),
-                ],
+    final screenWidth = context.screenConstraint().width;
+    final isLargeScreen = screenWidth > 1200;
+    
+    if (isLargeScreen) {
+      return Center(
+        child: SizedBox(
+          width: screenWidth * 0.85,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 3,
+                child: const MainSections(),
               ),
-      ),
-    );
+              const SizedBox(width: 32),
+              SizedBox(
+                width: 320,
+                child: const References(),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Center(
+        child: SizedBox(
+          width: screenWidth * 0.9,
+          child: const Column(
+            children: [
+              MainSectionsWithoutSkills(),
+              SizedBox(height: 32),
+              References(),
+              SizedBox(height: 32),
+              SkillsSectionWidget(),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }
