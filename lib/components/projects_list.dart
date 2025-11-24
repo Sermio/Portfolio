@@ -51,15 +51,15 @@ class ProjectsList extends StatelessWidget {
                 ],
               ),
             ),
-            Wrap(
-              spacing: 24,
-              runSpacing: 24,
-              alignment: WrapAlignment.center,
-              children: projectList.map((project) {
-                return ProjectWidget(
-                  project: project,
-                );
-              }).toList(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: projectList.map((project) {
+                  return ProjectWidget(
+                    project: project,
+                  );
+                }).toList(),
+              ),
             ),
           ],
         ),
