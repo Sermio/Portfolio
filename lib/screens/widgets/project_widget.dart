@@ -26,10 +26,15 @@ class _ProjectWidgetState extends State<ProjectWidget> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-        height: 500,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxWidth: 400, // Ancho máximo de la card
+        ),
+        child: AspectRatio(
+          aspectRatio: 9 / 16, // Proporción típica de imágenes móviles
+          child: AnimatedContainer(
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
         decoration: BoxDecoration(
           color: _showDescription ? theme.cardColor : Colors.transparent,
           borderRadius: BorderRadius.circular(24),
@@ -53,16 +58,17 @@ class _ProjectWidgetState extends State<ProjectWidget> {
         child: Stack(
           children: [
             // Contenido de la imagen (carrusel) - ocupa toda la card
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: AnimatedOpacity(
-                  opacity: _showDescription ? 0 : 1,
-                  duration: const Duration(milliseconds: 300),
-                  child: _showDescription
-                      ? const SizedBox.shrink()
-                      : _buildImageCarousel(theme),
-                ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: AnimatedOpacity(
+                opacity: _showDescription ? 0 : 1,
+                duration: const Duration(milliseconds: 300),
+                child: _showDescription
+                    ? const SizedBox.shrink()
+                    : _buildImageCarousel(theme),
               ),
             ),
             // Contenido de la descripción
@@ -111,58 +117,57 @@ class _ProjectWidgetState extends State<ProjectWidget> {
               left: 0,
               right: 0,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Botón para ver descripción/imagen (siempre visible)
                     if (!_showDescription)
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 2,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
                           ),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _showDescription = !_showDescription;
-                                });
-                              },
-                              borderRadius: BorderRadius.circular(12),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.info_outline,
-                                      size: 18,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _showDescription = !_showDescription;
+                              });
+                            },
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.info_outline,
+                                    size: 18,
+                                    color: Colors.black,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    "+Info",
+                                    style: const TextStyle(
                                       color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      "+Info",
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -209,25 +214,22 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                     // Botón para ver proyecto (solo visible cuando se muestra la descripción)
                     if (_showDescription) ...[
                       const SizedBox(width: 12),
-                      Expanded(
-                        flex: 2,
-                        child: ElevatedButton.icon(
-                          onPressed: () async {
-                            final Uri url = Uri.parse(widget.project.link);
-                            await launchUrl(url, mode: LaunchMode.externalApplication);
-                          },
-                          icon: const Icon(Icons.open_in_new, size: 18),
-                          label: const Text("Ver Proyecto"),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.primaryColor,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            elevation: _isHovered ? 8 : 4,
-                            shadowColor: AppTheme.primaryColor.withOpacity(0.4),
+                      ElevatedButton.icon(
+                        onPressed: () async {
+                          final Uri url = Uri.parse(widget.project.link);
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        },
+                        icon: const Icon(Icons.open_in_new, size: 18),
+                        label: const Text("Ver Proyecto"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryColor,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                          elevation: _isHovered ? 8 : 4,
+                          shadowColor: AppTheme.primaryColor.withOpacity(0.4),
                         ),
                       ),
                     ],
@@ -236,6 +238,8 @@ class _ProjectWidgetState extends State<ProjectWidget> {
               ),
             ),
           ],
+        ),
+        ),
         ),
       ),
     );
@@ -268,29 +272,41 @@ class _ProjectWidgetState extends State<ProjectWidget> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        return CarouselSlider(
-          carouselController: _carouselController,
-          items: widget.project.images.map((img) {
-            return Image.asset(
-              img,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            );
-          }).toList(),
-          options: CarouselOptions(
+        return ClipRect(
+          child: SizedBox(
+            width: double.infinity,
             height: constraints.maxHeight,
-            viewportFraction: 1.0,
-            initialPage: 0,
-            enableInfiniteScroll: widget.project.images.length > 1,
-            autoPlay: widget.project.images.length > 1 && !_showDescription,
-            autoPlayInterval: const Duration(seconds: 5),
-            autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-            autoPlayCurve: Curves.easeInOutCubic,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentImageIndex = index;
-              });
-            },
+            child: CarouselSlider(
+              carouselController: _carouselController,
+              items: widget.project.images.map((img) {
+                return Container(
+                  width: double.infinity,
+                  height: constraints.maxHeight,
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    img,
+                    fit: BoxFit.contain,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                );
+              }).toList(),
+              options: CarouselOptions(
+                height: constraints.maxHeight,
+                viewportFraction: 1.0,
+                initialPage: 0,
+                enableInfiniteScroll: widget.project.images.length > 1,
+                autoPlay: widget.project.images.length > 1 && !_showDescription,
+                autoPlayInterval: const Duration(seconds: 5),
+                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
+                autoPlayCurve: Curves.easeInOutCubic,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentImageIndex = index;
+                  });
+                },
+              ),
+            ),
           ),
         );
       },

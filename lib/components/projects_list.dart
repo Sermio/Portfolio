@@ -12,8 +12,6 @@ class ProjectsList extends StatelessWidget {
     final theme = Theme.of(context);
     double screenWidth = context.screenConstraint().width;
 
-    int crossAxisCount = screenWidth > 1200 ? 2 : 1;
-
     return Center(
       child: SizedBox(
         width: screenWidth > 1200 ? 1200 : screenWidth * 0.9,
@@ -53,22 +51,15 @@ class ProjectsList extends StatelessWidget {
                 ],
               ),
             ),
-            GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: crossAxisCount,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
-                childAspectRatio: screenWidth > 1200 ? 1.0 : 0.85,
-              ),
-              itemCount: projectList.length,
-              itemBuilder: (BuildContext context, int index) {
+            Wrap(
+              spacing: 24,
+              runSpacing: 24,
+              alignment: WrapAlignment.center,
+              children: projectList.map((project) {
                 return ProjectWidget(
-                  project: projectList[index],
+                  project: project,
                 );
-              },
+              }).toList(),
             ),
           ],
         ),
