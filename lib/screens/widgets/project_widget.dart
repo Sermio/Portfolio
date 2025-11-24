@@ -134,6 +134,10 @@ class _ProjectWidgetState extends State<ProjectWidget> {
               autoPlayInterval: const Duration(seconds: 4),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.easeInOut,
+              pauseAutoPlayOnTouch: true,
+              pauseAutoPlayOnManualNavigate: true,
+              enlargeCenterPage: false,
+              scrollDirection: Axis.horizontal,
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentImageIndex = index;
@@ -148,45 +152,51 @@ class _ProjectWidgetState extends State<ProjectWidget> {
             bottom: 16,
             left: 0,
             right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: widget.project.images.asMap().entries.map((entry) {
-                return GestureDetector(
-                  onTap: () => _carouselController.animateToPage(entry.key),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    width: _currentImageIndex == entry.key ? 32 : 8,
-                    height: 8,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: _currentImageIndex == entry.key
-                          ? Colors.white
-                          : Colors.white.withOpacity(0.5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 4,
-                        ),
-                      ],
+            child: IgnorePointer(
+              ignoring: false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: widget.project.images.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _carouselController.animateToPage(entry.key),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      width: _currentImageIndex == entry.key ? 32 : 8,
+                      height: 8,
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: _currentImageIndex == entry.key
+                            ? Colors.white
+                            : Colors.white.withOpacity(0.5),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           ),
-        // Overlay de hover
+        // Overlay de hover (no bloquea gestos)
         if (_isHovered)
           Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withOpacity(0.3),
-                  ],
+            child: IgnorePointer(
+              ignoring: true,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.3),
+                    ],
+                  ),
                 ),
               ),
             ),
