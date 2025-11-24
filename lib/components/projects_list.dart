@@ -21,42 +21,47 @@ class ProjectsList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
+                      gradient: LinearGradient(
+                        colors: [
+                          AppTheme.primaryColor.withOpacity(0.15),
+                          AppTheme.secondaryColor.withOpacity(0.15),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
-                      Icons.folder_outlined,
+                      Icons.folder_special_outlined,
                       color: AppTheme.primaryColor,
-                      size: 28,
+                      size: 32,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 16),
                   Text(
                     'Projects',
                     style: theme.textTheme.displaySmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: theme.colorScheme.onSurface,
+                      letterSpacing: -0.5,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
             GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: crossAxisCount,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: screenWidth > 1200 ? 0.75 : 0.85,
+                crossAxisSpacing: 24,
+                mainAxisSpacing: 24,
+                childAspectRatio: screenWidth > 1200 ? 1.0 : 0.85,
               ),
               itemCount: projectList.length,
               itemBuilder: (BuildContext context, int index) {
