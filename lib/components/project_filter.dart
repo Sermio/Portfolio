@@ -70,16 +70,20 @@ class _ProjectFilterState extends State<ProjectFilter> {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
-      margin: const EdgeInsets.only(bottom: AppSpacing.lg),
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      margin: const EdgeInsets.only(bottom: AppSpacing.xl),
       decoration: BoxDecoration(
         color: theme.cardColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: theme.dividerColor.withOpacity(0.1),
+          width: 1,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+            blurRadius: 15,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -88,12 +92,24 @@ class _ProjectFilterState extends State<ProjectFilter> {
         children: [
           Row(
             children: [
-              Icon(Icons.filter_list, color: AppTheme.primaryColor),
-              const SizedBox(width: AppSpacing.sm),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.filter_list,
+                  color: AppTheme.primaryColor,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: AppSpacing.md),
               Text(
                 'Filtrar proyectos',
-                style: theme.textTheme.titleMedium?.copyWith(
+                style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
             ],
@@ -102,12 +118,29 @@ class _ProjectFilterState extends State<ProjectFilter> {
           TextField(
             decoration: InputDecoration(
               hintText: 'Buscar proyectos...',
-              prefixIcon: const Icon(Icons.search),
+              prefixIcon: Icon(Icons.search, color: AppTheme.primaryColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: theme.dividerColor.withOpacity(0.2),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: theme.dividerColor.withOpacity(0.2),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: AppTheme.primaryColor,
+                  width: 2,
+                ),
               ),
               filled: true,
               fillColor: theme.colorScheme.surfaceVariant,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             ),
             onChanged: (value) {
               setState(() {
@@ -135,8 +168,16 @@ class _ProjectFilterState extends State<ProjectFilter> {
                     _applyFilter();
                   });
                 },
-                selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+                selectedColor: AppTheme.primaryColor.withOpacity(0.15),
                 checkmarkColor: AppTheme.primaryColor,
+                labelStyle: theme.textTheme.bodyMedium,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                side: BorderSide(
+                  color: isSelected
+                      ? AppTheme.primaryColor
+                      : theme.dividerColor.withOpacity(0.3),
+                  width: isSelected ? 1.5 : 1,
+                ),
               );
             }).toList(),
           ),

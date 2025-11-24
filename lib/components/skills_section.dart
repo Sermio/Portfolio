@@ -11,7 +11,7 @@ class SkillsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 0.0,
-      runSpacing: 20.0,
+      runSpacing: 0.0,
       alignment: WrapAlignment.start,
       children: skills.map((skill) {
         return SkillBar(
