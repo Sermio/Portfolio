@@ -28,10 +28,7 @@ class _ProjectWidgetState extends State<ProjectWidget> {
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: 600,
-        ),
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: theme.cardColor,
           borderRadius: BorderRadius.circular(20),
