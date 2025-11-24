@@ -8,7 +8,7 @@ class WebHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 150),
+      padding: const EdgeInsets.only(bottom: 150),
       child: Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.none,
@@ -27,12 +27,22 @@ class WebHeader extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             bottom: -150,
-            child: CircleAvatar(
-              radius: 100,
-              backgroundImage: NetworkImage(
+            child: ClipOval(
+              child: Image.network(
                 'https://raw.githubusercontent.com/Sermio/Portfolio/refs/heads/main/assets/images/img.png',
+                width: 200,
+                height: 200,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.grey[300],
+                    child: const Icon(Icons.person, size: 80),
+                  );
+                },
               ),
             ),
           ),
