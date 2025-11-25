@@ -3,8 +3,8 @@ import 'package:portfolio/components/header.dart';
 import 'package:portfolio/components/main_content.dart';
 import 'package:portfolio/components/projects_list.dart';
 import 'package:portfolio/components/resume_contact_buttons.dart';
-import 'package:portfolio/constants/constants.dart';
 import 'package:portfolio/data/data.dart';
+import 'package:portfolio/utils/extensions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +35,26 @@ class HomeScreen extends StatelessWidget {
             const ResumeContactButtons(),
             const SizedBox(height: 64),
             const MainContent(),
-            const SizedBox(height: 48),
+            Builder(
+              builder: (context) {
+                final screenWidth = context.screenConstraint().width;
+                final isLargeScreen = screenWidth > 1200;
+                final contentWidth = isLargeScreen ? screenWidth * 0.85 : screenWidth * 0.9;
+                
+                return Center(
+                  child: SizedBox(
+                    width: contentWidth,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 48),
+                        const Divider(height: 1),
+                        const SizedBox(height: 48),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
             const ProjectsList(),
             const SizedBox(height: 64),
           ],

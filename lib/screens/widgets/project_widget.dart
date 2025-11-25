@@ -53,7 +53,7 @@ class _ProjectWidgetState extends State<ProjectWidget> {
 
   Widget _buildDesktopLayout(ThemeData theme) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // Sección de imágenes (lado izquierdo)
         Expanded(
@@ -210,54 +210,61 @@ class _ProjectWidgetState extends State<ProjectWidget> {
       padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Título del proyecto
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppTheme.primaryColor.withOpacity(0.15),
-                      AppTheme.secondaryColor.withOpacity(0.15),
-                    ],
+              // Título del proyecto
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppTheme.primaryColor.withOpacity(0.15),
+                          AppTheme.secondaryColor.withOpacity(0.15),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      Icons.code_rounded,
+                      color: AppTheme.primaryColor,
+                      size: 20,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(
-                  Icons.code_rounded,
-                  color: AppTheme.primaryColor,
-                  size: 20,
-                ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      widget.project.name,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurface,
+                        letterSpacing: -0.5,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 12),
-              Expanded(
+              const SizedBox(height: 16),
+              // Descripción
+              Flexible(
                 child: Text(
-                  widget.project.name,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onSurface,
-                    letterSpacing: -0.5,
+                  widget.project.description,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    height: 1.6,
+                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    fontSize: 14,
                   ),
+                  maxLines: 6,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          // Descripción
-          Text(
-            widget.project.description,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              height: 1.6,
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
-              fontSize: 14,
-            ),
-            maxLines: 6,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 24),
           // Botón de acción
           SizedBox(
             width: double.infinity,
