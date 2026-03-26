@@ -165,10 +165,14 @@ List<Project> projectList = [
           "The WorldShift Tribute Application is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
       link: "https://github.com/Sermio/WD_filter",
       images: [
-        "assets/images/Worldshift/1.png",
-        "assets/images/Worldshift/2.png",
-        "assets/images/Worldshift/3.png",
-        "assets/images/Worldshift/4.png",
+        "assets/images/Worldshift/1.jpg",
+        "assets/images/Worldshift/2.jpg",
+        "assets/images/Worldshift/3.jpg",
+        "assets/images/Worldshift/4.jpg",
+        "assets/images/Worldshift/5.jpg",
+        "assets/images/Worldshift/6.jpg",
+        "assets/images/Worldshift/7.jpg",
+        "assets/images/Worldshift/8.jpg",
       ]),
   Project(
       name: "Diseños",
