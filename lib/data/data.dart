@@ -100,11 +100,18 @@ List<Project> projectList = [
       link: "https://github.com/Sermio/MHWilds_App",
       images: [
         "assets/images/MHWilds/1.jpg",
+        "assets/images/MHWilds/2.jpg",
+        "assets/images/MHWilds/3.jpg",
+        "assets/images/MHWilds/4.jpg",
+        "assets/images/MHWilds/5.jpg",
+        "assets/images/MHWilds/6.jpg",
+        "assets/images/MHWilds/7.jpg",
         "assets/images/MHWilds/8.jpg",
         "assets/images/MHWilds/9.jpg",
         "assets/images/MHWilds/10.jpg",
         "assets/images/MHWilds/11.jpg",
         "assets/images/MHWilds/12.jpg",
+        "assets/images/MHWilds/13.jpg",
       ]),
   Project(
       name: "Missions",
