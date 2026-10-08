@@ -92,7 +92,23 @@ List<Skill> languagesList = [
   Skill(name: "French", percent: 0.55),
 ];
 
+/// Screenshot paths `assets/images/<folder>/1.jpg … <count>.jpg`.
+List<String> _screenshots(String folder, int count) =>
+    [for (var i = 1; i <= count; i++) "assets/images/$folder/$i.jpg"];
+
 List<Project> projectList = [
+  Project(
+      name: "VetApp",
+      description:
+          "Multi-tenant SaaS built with Flutter and Firebase for livestock veterinary clinics, evolution of VaCar. Office staff create field work orders, vets mark when they are on the way, complete visits with notes and treatments, collect on-screen signatures and generate PDF invoices and delivery notes. Includes a team chat with voice notes, push notifications with Cloud Functions, roles via Firebase Auth custom claims (super-admin, admin, vet, office), staff licences per plan and clinic statistics. Architecture: Riverpod with MVVM and repositories.",
+      link: "https://github.com/Sermio/VetApp",
+      images: _screenshots("VetApp", 9)),
+  Project(
+      name: "impoWallet",
+      description:
+          "Personal finance app built with Flutter that imports bank statements (Excel, CSV and PDF) from several banks, groups movements by month and categorises them with keyword rules and Gemini (Firebase AI Logic). Month detail with summary, category donut chart, searchable movements and month-to-month comparison charts. Works offline in local mode or syncs to Firestore with Google Sign-In, AES-GCM encrypted fields and App Check.",
+      link: "https://github.com/Sermio/AppBancaria",
+      images: _screenshots("ImpoWallet", 6)),
   Project(
       name: "MHWilds Assistant",
       description:
@@ -113,6 +129,66 @@ List<Project> projectList = [
         "assets/images/MHWilds/12.jpg",
         "assets/images/MHWilds/13.jpg",
       ]),
+  Project(
+      name: "Fill Good / Hidromatic",
+      description:
+          "White-label platform to operate a network of refill vending machines (cleaning products and purified water). React Native app with Expo Router, Tamagui and Zustand, a PHP/MySQL REST API and a Node.js WebSocket bridge that talks to the machines in real time: online status, remote price, product and hopper configuration, and duplicate-free sales sync. Dashboard, machines with stock per product, customers, alerts, user administration and Excel export.",
+      link: "https://github.com/Sermio/FillGood",
+      images: _screenshots("FillGood", 8)),
+  Project(
+      name: "LabScan",
+      description:
+          "Android app built with Flutter that photographs veterinary lab tickets (VetScan VS2), reads them on-device with OCR and appends each ticket as a row to an Excel workbook in OneDrive through Microsoft Graph. Microsoft sign-in with AppAuth and PKCE, OneDrive browser, batch and continuous scanning, guided correction of doubtful readings, pending drafts in secure storage and duplicate-safe retries. Covered by unit and widget tests.",
+      link: "https://github.com/Sermio/Lab_scan",
+      images: _screenshots("LabScan", 4)),
+  Project(
+      name: "Bacttle",
+      description:
+          "Flutter and Dart adaptation of the microbiology board game Bacttle (game by Tania Miguel Trabajo, illustrations by Philippe Piccardi). Basic and advanced modes for 2 to 4 species, computer opponents, local multiplayer, guided tutorial, card atlas, the EX expansion, five languages and local saves. The rules engine is pure Dart and covered by tests.",
+      link: "https://github.com/Sermio/bacttle",
+      images: _screenshots("Bacttle", 6)),
+  Project(
+      name: "Bubble Blast",
+      description:
+          "Match-3 bubble popping game built with Flutter, Flame and Riverpod. Endless campaign with procedurally themed chapters and bosses, special bubbles (line, colour and cross bombs, wildcards), ice, locks, stones and chests, daily challenge with streaks, an Expedition mode with charms, a shop with tools, selectable skins, tutorial and local saves.",
+      link: "https://github.com/Sermio/bubble_game",
+      images: _screenshots("BubbleBlast", 5)),
+  Project(
+      name: "Cata",
+      description:
+          "Flutter and Firebase app to organise blind wine tastings. The organiser creates a tasting with the wines (alias, description, price and photo in Firebase Storage); participants rank them blind with comments, and once the tasting is closed everyone sees the aggregated ranking and can reveal the real labels. Provider for state, Cloud Firestore in real time and web deployment on Firebase Hosting.",
+      link: "https://github.com/Sermio/wine_app",
+      images: _screenshots("WineApp", 6)),
+  Project(
+      name: "Smart Climate Station",
+      description:
+          "IoT project: an Arduino UNO R4 WiFi publishes temperature, humidity and soil moisture to Firebase Realtime Database, and a Flutter app shows live values, keeps an offline history in SQLite, backs it up to Cloud Firestore and charts hourly, daily, weekly and monthly statistics with fl_chart. A Cloud Function sends push alerts when humidity is too high.",
+      link: "https://github.com/Sermio/temperature_app",
+      images: _screenshots("ClimateStation", 6)),
+  Project(
+      name: "Lazy Tasking",
+      description:
+          "Minimalist recurring-task tracker built with Flutter. Daily, weekly and monthly tasks on a pending/completed board that renew automatically, completion statistics with motivational messages, searchable history, scheduled local notifications and seven languages. Data is stored locally on the device.",
+      link: "https://github.com/Sermio/task_app",
+      images: _screenshots("LazyTasking", 6)),
+  Project(
+      name: "LiftTrack",
+      description:
+          "Experimental velocity based training app for Olympic weightlifting built with Flutter. The phone is fixed to the barbell and its accelerometer and gyroscope are integrated to estimate bar velocity, acceleration and bar path, with drift correction and charts. An AI Coach sends lift videos to Gemini through Firebase AI Logic for technique feedback.",
+      link: "https://github.com/Sermio/gym_app",
+      images: _screenshots("LiftTrack", 4)),
+  Project(
+      name: "Actions History",
+      description:
+          "Food, symptom and medication diary built with Flutter to spot intolerances: each entry has a category, photo, date and note, shown in a filterable list or a calendar view. Offline storage in SQLite, light and dark themes.",
+      link: "https://github.com/Sermio/food_history",
+      images: _screenshots("ActionsHistory", 5)),
+  Project(
+      name: "Ashen Vigil",
+      description:
+          "Idle dark-fantasy adventure in development with Flutter and Dart, built task by task by coordinated AI agents. Data-driven pure Dart combat core (stats and modifiers, damage pipeline, status effects, skills and AI, timed encounters with a CLI demo), a sprite_forge pixel-art pipeline and a UI and currency art library. Screens show the art library and a simulated combat log.",
+      link: "https://github.com/Sermio/iddle_incremental",
+      images: _screenshots("AshenVigil", 2)),
   Project(
       name: "Missions",
       description:

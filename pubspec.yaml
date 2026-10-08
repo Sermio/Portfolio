@@ -78,6 +78,18 @@ flutter:
     - assets/images/Vacar/
     - assets/images/Worldshift/
     - assets/images/MusicPlayer/
+    - assets/images/ActionsHistory/
+    - assets/images/AshenVigil/
+    - assets/images/Bacttle/
+    - assets/images/BubbleBlast/
+    - assets/images/ClimateStation/
+    - assets/images/FillGood/
+    - assets/images/ImpoWallet/
+    - assets/images/LabScan/
+    - assets/images/LazyTasking/
+    - assets/images/LiftTrack/
+    - assets/images/VetApp/
+    - assets/images/WineApp/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
