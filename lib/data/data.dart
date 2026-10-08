@@ -41,35 +41,35 @@ const experienceList = [
     company: "ADCOMUNIDAD · Spain",
     period: "Jun 2025 – Present",
     description:
-        "As the Lead Developer, I take charge of the entire development and design process for cross-platform mobile apps with Flutter. My role encompasses every phase from initial architecture to product launch, including UI/UX design, building scalable and modular frameworks, developing reusable UI components, managing state with Provider and BLoC patterns, integrating REST APIs and Firebase services, and overseeing testing, CI/CD, and deployment to Google Play and App Store.",
+        "Project: leading the design and development of cross-platform mobile apps, from initial architecture to launch. Delivered: scalable modular frameworks, reusable UI components, REST API and Firebase integrations, testing, CI/CD and releases to Google Play and the App Store. Tools: Flutter, Provider, BLoC, Firebase and AI coding assistants.",
   ),
   Experience(
     role: "Apps Developer",
     company: "Freelance",
     period: "Oct 2024 – May 2025",
     description:
-        "Design and development of cross-platform (Android and iOS) apps using Flutter and Kotlin.",
+        "Project: design and development of mobile apps for different clients. Delivered: cross-platform (Android and iOS) apps, such as a QR scanner that sends the scanned data to a backend, among other projects. Tools: Flutter and Kotlin.",
   ),
   Experience(
     role: "Software Engineer and Consultant",
     company: "Sotelo S.L. · Spain",
     period: "May 2022 – Oct 2024",
     description:
-        "I worked in a multidisciplinary team, where I learned Vue.js, Python, React Native, and SCRUM. This position also allowed me to develop strong skills in team management, project coordination and customer communication.",
+        "Project: software development and consulting in a multidisciplinary team, with direct customer communication. Delivered: web and mobile solutions, coordinating projects and managing the team. Tools: Vue.js, Python, React Native and SCRUM, all learned on the job.",
   ),
   Experience(
     role: "Flutter Apps Developer",
     company: "Freelance",
     period: "Feb 2022 – Apr 2022",
     description:
-        "I developed and released the \"Subasta Forestal\" app using Flutter, with over 500 downloads. I was responsible for the updates of the \"SBC Gasolineras\" and \"Museo das Peregrinacións\" apps in native Java/Kotlin.",
+        "Project: launch of my own app plus maintenance of existing ones. Delivered: I developed and released the \"Subasta Forestal\" app, with over 500 downloads, and handled the updates of the \"SBC Gasolineras\" and \"Museo das Peregrinacións\" apps. Tools: Flutter for the new app, native Java/Kotlin for the updates.",
   ),
   Experience(
     role: "Flutter Developer (Internship)",
     company: "Servicios Reunidos S.L. · Spain",
     period: "Sep 2020 – Feb 2022",
     description:
-        "As part of my Bachelor’s Thesis, I developed a Flutter app capable of extracting information from pictures using a neural network. It also had a website developed in Vue.js.",
+        "Project: my Bachelor’s Thesis, an app that extracts information from pictures. Delivered: a Flutter app powered by a neural network, plus a companion website. Tools: Flutter and Vue.js.",
   ),
 ];
 
@@ -77,6 +77,7 @@ const techSkills = [
   Skill(name: "Flutter", percent: 0.95),
   Skill(name: "Dart", percent: 0.95),
   Skill(name: "Git", percent: 0.9),
+  Skill(name: "AI tools", percent: 0.85),
   Skill(name: "Firebase", percent: 0.75),
   Skill(name: "SCRUM", percent: 0.75),
   Skill(name: "JavaScript", percent: 0.7),
