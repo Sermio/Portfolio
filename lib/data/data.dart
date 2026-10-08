@@ -133,7 +133,7 @@ final projectList = <Project>[
       name: "VaCar",
       description:
           "Multi-tenant SaaS built with Flutter and Firebase for livestock veterinary clinics. Office staff create field work orders, vets mark when they are on the way, complete visits with notes and treatments, collect on-screen signatures and generate PDF invoices and delivery notes. Includes a team chat with voice notes, push notifications with Cloud Functions, roles via Firebase Auth custom claims (super-admin, admin, vet, office), staff licences per plan and clinic statistics. Architecture: Riverpod with MVVM and repositories.",
-      link: "https://github.com/Sermio/VetApp",
+      link: "https://github.com/Sermio/VaCar",
       images: _screenshots("VetApp", 9)),
   Project(
       name: "impoWallet",
