@@ -210,7 +210,7 @@ final projectList = <Project>[
   Project(
       name: "Missions",
       description:
-          "This application consists of monitoring points of sale in different locations. The information that can be obtained is varied, such as the existence of products, prices, store organization, etc.",
+          "Flutter application that consists of monitoring points of sale in different locations. The information that can be obtained is varied, such as the existence of products, prices, store organization, etc.",
       link: "https://github.com/Sermio/Missions_app",
       images: _screenshots("Missions", 15, ext: "png")),
   // Project(
@@ -240,31 +240,31 @@ final projectList = <Project>[
   Project(
       name: "WorldShift",
       description:
-          "The WorldShift Tribute Application is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
+          "The WorldShift Tribute Application, built with Flutter, is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
       link: "https://github.com/Sermio/WD_filter",
       images: _screenshots("Worldshift", 8)),
   Project(
       name: "Diseños",
       description:
-          "A mobile app that demonstrates a variety of custom UI designs and animations. This app serves as a showcase of different layouts and UI components like slideshows, list views, custom headers, custom progress bars, and more. Perfect for developers looking for inspiration or trying to implement similar designs in their own apps.",
+          "A Flutter mobile app that demonstrates a variety of custom UI designs and animations. This app serves as a showcase of different layouts and UI components like slideshows, list views, custom headers, custom progress bars, and more. Perfect for developers looking for inspiration or trying to implement similar designs in their own apps.",
       link: "https://github.com/Sermio/disenos_app",
       images: _screenshots("Disenos", 6, ext: "png")),
   Project(
       name: "QR scanner",
       description:
-          "This app allows users to scan QR codes quickly and efficiently. By using the camera on a mobile device, the app can detect and interpret QR codes, providing users with the possibility to send encoded data from the QR code to a backend. The app features an intuitive interface, with easy-to-use functionality for both beginners and advanced users. It also ensures security and privacy by not storing or sharing scanned information without user consent.",
+          "This Flutter app allows users to scan QR codes quickly and efficiently. By using the camera on a mobile device, the app can detect and interpret QR codes, providing users with the possibility to send encoded data from the QR code to a backend. The app features an intuitive interface, with easy-to-use functionality for both beginners and advanced users. It also ensures security and privacy by not storing or sharing scanned information without user consent.",
       link: "https://github.com/Sermio/QR_scan",
       images: _screenshots("QRScan", 5, ext: "png")),
   Project(
       name: "Subasta Forestal",
       description:
-          "The Subasta Forestal application is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
+          "The Subasta Forestal application, built with Flutter, is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
       link: "https://github.com/Sermio/Subasta_forestal",
       images: _screenshots("SubastaForestal", 4, ext: "png")),
   Project(
       name: "Shoes",
       description:
-          "A mobile app that allows users to view a product with the option to select different colors and interactive animations to enhance the user experience.",
+          "A Flutter mobile app that allows users to view a product with the option to select different colors and interactive animations to enhance the user experience.",
       link: "https://github.com/Sermio/ShoesApp",
       images: _screenshots("Shoes", 2, ext: "png")),
   Project(
