@@ -1,9 +1,11 @@
-class Skill {
-  String name;
-  double percent;
+import 'package:flutter/foundation.dart';
 
-  Skill({
-    required this.name,
-    required this.percent,
-  });
+@immutable
+class Skill {
+  const Skill({required this.name, required this.percent});
+
+  final String name;
+
+  /// Self-assessed level between 0 and 1.
+  final double percent;
 }
