@@ -21,7 +21,7 @@ class ExperienceSection extends StatelessWidget {
           const AnimatedSection(
             child: SectionHeader(
               eyebrow: 'Experience',
-              title: 'Where I have worked',
+              title: 'Professional Experience',
             ),
           ),
           for (final (index, item) in experienceList.indexed)

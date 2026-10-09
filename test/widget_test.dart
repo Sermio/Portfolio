@@ -39,7 +39,7 @@ void main() {
 
       expect(tester.takeException(), isNull);
       expect(find.text("Hi, I'm $name."), findsOneWidget);
-      expect(find.text('Where I have worked'), findsOneWidget);
+      expect(find.text('Professional Experience'), findsOneWidget);
       expect(find.text('My toolbox'), findsOneWidget);
       expect(find.text('Things I have built'), findsOneWidget);
       expect(find.byType(ProjectShowcase), findsOneWidget);
