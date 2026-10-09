@@ -4,8 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/components/nav_bar.dart';
 import 'package:portfolio/components/project_card.dart';
 import 'package:portfolio/components/project_filter.dart';
+import 'package:portfolio/components/project_showcase.dart';
+import 'package:portfolio/components/screenshot_carousel.dart';
 import 'package:portfolio/data/data.dart';
 import 'package:portfolio/main.dart';
+import 'package:portfolio/utils/project_search.dart';
 
 Future<void> _pumpApp(WidgetTester tester, Size size) async {
   tester.view.physicalSize = size;
@@ -39,11 +42,12 @@ void main() {
       expect(find.text('Where I have worked'), findsOneWidget);
       expect(find.text('My toolbox'), findsOneWidget);
       expect(find.text('Things I have built'), findsOneWidget);
+      expect(find.byType(ProjectShowcase), findsOneWidget);
       expect(find.byType(ProjectCard), findsNWidgets(projectList.length));
     });
   }
 
-  testWidgets('technology chip filters the project grid', (tester) async {
+  testWidgets('technology chip filters the project list', (tester) async {
     await _pumpApp(tester, const Size(1440, 900));
 
     final chip = find.descendant(
@@ -52,10 +56,13 @@ void main() {
     await tester.tap(chip);
     await tester.pumpAndSettle();
 
-    final cards = tester.widgetList<ProjectCard>(find.byType(ProjectCard));
-    expect(cards, isNotEmpty);
-    expect(cards.length, lessThan(projectList.length));
-    expect(cards.every((c) => c.project.description.contains('Flame')), isTrue);
+    final shown = tester.widget<ProjectShowcase>(find.byType(ProjectShowcase));
+    expect(shown.project.description, contains('Flame'));
+    final count = filterProjects(projectList, technology: 'Flame').length;
+    expect(count, lessThan(projectList.length));
+    expect(find.text('$count ${count == 1 ? 'project' : 'projects'}'),
+        findsOneWidget);
+    expect(find.byType(ProjectCard), findsNWidgets(count));
   });
 
   testWidgets('search with no match shows the empty state', (tester) async {
@@ -64,6 +71,7 @@ void main() {
     await tester.enterText(find.byType(TextField), 'zzz-no-project');
     await tester.pumpAndSettle();
 
+    expect(find.byType(ProjectShowcase), findsNothing);
     expect(find.byType(ProjectCard), findsNothing);
     expect(find.text('No projects match your search'), findsOneWidget);
   });
@@ -81,6 +89,86 @@ void main() {
     await tester.tap(find.byTooltip('Close'));
     await tester.pumpAndSettle();
     expect(find.byTooltip('Close'), findsNothing);
+  });
+
+  testWidgets('tapping a screenshot opens the gallery', (tester) async {
+    await _pumpApp(tester, const Size(1440, 900));
+
+    final shot = find.byKey(const ValueKey('screenshot-0'));
+    await _centre(tester, shot);
+    await tester.tap(shot);
+    await tester.pumpAndSettle();
+
+    expect(find.byTooltip('Close'), findsOneWidget);
+
+    // Let the real image decode so the tap area shrinks to the picture.
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pumpAndSettle();
+
+    // Tapping the picture keeps it open; empty space beside it closes it.
+    final picture = tester.getRect(find.byType(Image).last);
+    await tester.tapAt(picture.center);
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Close'), findsOneWidget);
+    await tester.tapAt(Offset(picture.left - 30, picture.center.dy));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Close'), findsNothing);
+  });
+
+  testWidgets('card arrows loop through the photos without selecting',
+      (tester) async {
+    await _pumpApp(tester, const Size(1440, 900));
+
+    final card = find.byType(ProjectCard).first;
+    await _centre(tester, card);
+    final count = projectList.first.images.length;
+    int page() => tester
+        .widget<CarouselPageIndicator>(find.descendant(
+            of: card, matching: find.byType(CarouselPageIndicator)))
+        .page;
+
+    expect(page(), 0);
+    await tester.tap(find.descendant(
+        of: card, matching: find.byTooltip('Previous screenshot')));
+    await tester.pumpAndSettle();
+    expect(page(), count - 1);
+
+    await tester.tap(
+        find.descendant(of: card, matching: find.byTooltip('Next screenshot')));
+    await tester.pumpAndSettle();
+    expect(page(), 0);
+
+    final shown = tester.widget<ProjectShowcase>(find.byType(ProjectShowcase));
+    expect(shown.project, same(projectList.first));
+  });
+
+  testWidgets('picking a project in the list changes the stage',
+      (tester) async {
+    await _pumpApp(tester, const Size(1440, 900));
+
+    final next = projectList[1];
+    final tile = find.text(next.name).first;
+    await _centre(tester, tile);
+    await tester.tap(tile);
+    await tester.pumpAndSettle();
+
+    final shown = tester.widget<ProjectShowcase>(find.byType(ProjectShowcase));
+    expect(shown.project, same(next));
+  });
+
+  testWidgets('tapping a card puts that project in the showcase',
+      (tester) async {
+    await _pumpApp(tester, const Size(1440, 900));
+
+    final target = projectList.last;
+    final card = find.widgetWithText(ProjectCard, target.name);
+    await _centre(tester, card);
+    await tester.tap(card);
+    await tester.pumpAndSettle();
+
+    final shown = tester.widget<ProjectShowcase>(find.byType(ProjectShowcase));
+    expect(shown.project, same(target));
   });
 
   testWidgets('nav link scrolls the section below the navigation bar',

@@ -29,6 +29,7 @@ class AppButton extends StatefulWidget {
 class _AppButtonState extends State<AppButton> {
   bool _hovered = false;
   bool _focused = false;
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,56 +41,63 @@ class _AppButtonState extends State<AppButton> {
           fontSize: widget.compact ? 14 : 15,
         );
 
-    return AnimatedContainer(
+    return AnimatedScale(
+      scale: _pressed && !context.reduceMotion ? 0.96 : 1,
       duration: AppDurations.fast,
-      decoration: BoxDecoration(
-        gradient: isPrimary ? AppColors.brandGradient : null,
-        color: isPrimary
-            ? null
-            : Colors.white.withValues(alpha: _hovered ? 0.08 : 0.03),
-        borderRadius: radius,
-        border: Border.all(
-          color: _focused
-              ? AppColors.text
-              : isPrimary
-                  ? Colors.transparent
-                  : AppColors.border,
-          width: _focused ? 2 : 1,
-        ),
-        boxShadow: [
-          if (isPrimary)
-            BoxShadow(
-              color: AppColors.orange.withValues(alpha: _hovered ? 0.45 : 0.25),
-              blurRadius: _hovered ? 28 : 18,
-              offset: const Offset(0, 8),
-            ),
-        ],
-      ),
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          onTap: widget.onPressed,
-          onHover: (value) => setState(() => _hovered = value),
-          onFocusChange: (value) => setState(() => _focused = value),
+      curve: Curves.easeOut,
+      child: AnimatedContainer(
+        duration: AppDurations.fast,
+        decoration: BoxDecoration(
+          gradient: isPrimary ? AppColors.brandGradient : null,
+          color: isPrimary
+              ? null
+              : Colors.white.withValues(alpha: _hovered ? 0.08 : 0.03),
           borderRadius: radius,
-          hoverColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          splashColor: foreground.withValues(alpha: 0.12),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: widget.compact ? 44 : 52),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: widget.compact ? AppSpacing.md : AppSpacing.lg,
+          border: Border.all(
+            color: _focused
+                ? AppColors.text
+                : isPrimary
+                    ? Colors.transparent
+                    : AppColors.border,
+            width: _focused ? 2 : 1,
+          ),
+          boxShadow: [
+            if (isPrimary)
+              BoxShadow(
+                color:
+                    AppColors.orange.withValues(alpha: _hovered ? 0.45 : 0.25),
+                blurRadius: _hovered ? 28 : 18,
+                offset: const Offset(0, 8),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (widget.icon != null) ...[
-                    Icon(widget.icon, size: 18, color: foreground),
-                    const SizedBox(width: AppSpacing.sm),
+          ],
+        ),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: widget.onPressed,
+            onHover: (value) => setState(() => _hovered = value),
+            onFocusChange: (value) => setState(() => _focused = value),
+            onHighlightChanged: (value) => setState(() => _pressed = value),
+            borderRadius: radius,
+            hoverColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            splashColor: foreground.withValues(alpha: 0.12),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: widget.compact ? 44 : 52),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: widget.compact ? AppSpacing.md : AppSpacing.lg,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (widget.icon != null) ...[
+                      Icon(widget.icon, size: 18, color: foreground),
+                      const SizedBox(width: AppSpacing.sm),
+                    ],
+                    Text(widget.label, style: style),
                   ],
-                  Text(widget.label, style: style),
-                ],
+                ),
               ),
             ),
           ),

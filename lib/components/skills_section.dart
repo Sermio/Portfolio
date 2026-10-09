@@ -41,7 +41,11 @@ class SkillsSection extends StatelessWidget {
                 spacing: AppSpacing.xl,
                 runSpacing: AppSpacing.lg,
                 children: [
-                  for (final skill in techSkills) SkillMeter(skill: skill),
+                  for (final (index, skill) in techSkills.indexed)
+                    SkillMeter(
+                      skill: skill,
+                      delay: Duration(milliseconds: 60 * index),
+                    ),
                 ],
               ),
             ),

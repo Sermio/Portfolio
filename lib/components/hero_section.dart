@@ -6,8 +6,8 @@ import 'package:portfolio/data/data.dart';
 import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/theme/app_layout.dart';
 import 'package:portfolio/utils/links.dart';
-import 'package:portfolio/widgets/animated_section.dart';
 import 'package:portfolio/widgets/app_button.dart';
+import 'package:portfolio/widgets/entrance.dart';
 import 'package:portfolio/widgets/gradient_text.dart';
 import 'package:portfolio/widgets/page_section.dart';
 
@@ -21,31 +21,32 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = context.screenSize;
     final intro = _Intro(onViewProjects: onViewProjects);
-    final avatar = _Avatar(diameter: size.isDesktop ? 340 : 220);
+    final avatar = Entrance.zoom(
+      delay: const Duration(milliseconds: 60),
+      child: _Avatar(diameter: size.isDesktop ? 340 : 220),
+    );
 
     return Padding(
       padding: EdgeInsets.only(
         top: NavBar.height + (size.isMobile ? AppSpacing.xl : AppSpacing.xxxl),
       ),
       child: PageSection(
-        child: AnimatedSection(
-          child: size.isDesktop
-              ? Row(
-                  children: [
-                    Expanded(flex: 7, child: intro),
-                    const SizedBox(width: AppSpacing.xxl),
-                    Expanded(flex: 5, child: Center(child: avatar)),
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    avatar,
-                    const SizedBox(height: AppSpacing.xl),
-                    intro,
-                  ],
-                ),
-        ),
+        child: size.isDesktop
+            ? Row(
+                children: [
+                  Expanded(flex: 7, child: intro),
+                  const SizedBox(width: AppSpacing.xxl),
+                  Expanded(flex: 5, child: Center(child: avatar)),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  avatar,
+                  const SizedBox(height: AppSpacing.xl),
+                  intro,
+                ],
+              ),
       ),
     );
   }
@@ -70,70 +71,92 @@ class _Intro extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Badge(label: '$role · $location'),
+        const Entrance(
+          delay: Duration(milliseconds: 0),
+          child: _Badge(label: '$role · $location'),
+        ),
         const SizedBox(height: AppSpacing.lg),
-        Text(
-          "Hi, I'm $name.",
-          style: textTheme.titleLarge?.copyWith(color: AppColors.textMuted),
+        Entrance(
+          delay: const Duration(milliseconds: 40),
+          child: Text(
+            "Hi, I'm $name.",
+            style: textTheme.titleLarge?.copyWith(color: AppColors.textMuted),
+          ),
         ),
         const SizedBox(height: AppSpacing.sm),
-        Semantics(
-          header: true,
-          label: '$heroHeadlineStart$heroHeadlineHighlight.',
-          excludeSemantics: true,
-          child: Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: heroHeadlineStart),
-                WidgetSpan(
-                  alignment: PlaceholderAlignment.baseline,
-                  baseline: TextBaseline.alphabetic,
-                  child:
-                      GradientText(heroHeadlineHighlight, style: headlineStyle),
-                ),
-                const TextSpan(text: '.'),
-              ],
+        Entrance(
+          delay: const Duration(milliseconds: 80),
+          child: Semantics(
+            header: true,
+            label: '$heroHeadlineStart$heroHeadlineHighlight.',
+            excludeSemantics: true,
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(text: heroHeadlineStart),
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.baseline,
+                    baseline: TextBaseline.alphabetic,
+                    child: GradientText(heroHeadlineHighlight,
+                        style: headlineStyle),
+                  ),
+                  const TextSpan(text: '.'),
+                ],
+              ),
+              style: headlineStyle,
             ),
-            style: headlineStyle,
           ),
         ),
         const SizedBox(height: AppSpacing.lg),
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 580),
-          child: Text(
-            heroSubtitle,
-            style: textTheme.bodyLarge?.copyWith(color: AppColors.textMuted),
+        Entrance(
+          delay: const Duration(milliseconds: 120),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 580),
+            child: Text(
+              heroSubtitle,
+              style: textTheme.bodyLarge?.copyWith(color: AppColors.textMuted),
+            ),
           ),
         ),
         const SizedBox(height: AppSpacing.xl),
-        Wrap(
-          spacing: AppSpacing.md,
-          runSpacing: AppSpacing.md,
-          children: [
-            AppButton(
-              label: 'View projects',
-              icon: Icons.arrow_downward_rounded,
-              onPressed: onViewProjects,
-            ),
-            AppButton(
-              label: 'Resume',
-              icon: Icons.description_outlined,
-              variant: AppButtonVariant.outline,
-              onPressed: () => openLink(resumeUri),
-            ),
-          ],
+        Entrance(
+          delay: const Duration(milliseconds: 160),
+          child: Wrap(
+            spacing: AppSpacing.md,
+            runSpacing: AppSpacing.md,
+            children: [
+              AppButton(
+                label: 'View projects',
+                icon: Icons.arrow_downward_rounded,
+                onPressed: onViewProjects,
+              ),
+              AppButton(
+                label: 'Resume',
+                icon: Icons.description_outlined,
+                variant: AppButtonVariant.outline,
+                onPressed: () => openLink(resumeUri),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: AppSpacing.lg),
-        const SocialLinks(),
+        const Entrance(
+          delay: Duration(milliseconds: 200),
+          child: SocialLinks(),
+        ),
         SizedBox(height: size.isMobile ? AppSpacing.xl : AppSpacing.xxl),
-        Wrap(
-          spacing: size.isMobile ? AppSpacing.xl : AppSpacing.xxl,
-          runSpacing: AppSpacing.lg,
-          children: [
-            _Stat(value: '$years+', label: 'Years building apps'),
-            _Stat(value: '${projectList.length}', label: 'Featured projects'),
-            _Stat(value: '${languagesList.length}', label: 'Languages spoken'),
-          ],
+        Entrance(
+          delay: const Duration(milliseconds: 240),
+          child: Wrap(
+            spacing: size.isMobile ? AppSpacing.xl : AppSpacing.xxl,
+            runSpacing: AppSpacing.lg,
+            children: [
+              _Stat(value: '$years+', label: 'Years building apps'),
+              _Stat(value: '${projectList.length}', label: 'Featured projects'),
+              _Stat(
+                  value: '${languagesList.length}', label: 'Languages spoken'),
+            ],
+          ),
         ),
       ],
     );
@@ -230,6 +253,12 @@ class _Avatar extends StatelessWidget {
             avatarAsset,
             fit: BoxFit.cover,
             semanticLabel: 'Portrait of $name',
+            // Fade in once decoded instead of popping in.
+            frameBuilder: (_, child, frame, loadedSync) => AnimatedOpacity(
+              opacity: frame == null && !loadedSync ? 0 : 1,
+              duration: AppDurations.medium,
+              child: child,
+            ),
             errorBuilder: (_, __, ___) => const ColoredBox(
               color: AppColors.surfaceRaised,
               child: Icon(Icons.person_rounded,

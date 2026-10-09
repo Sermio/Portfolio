@@ -118,7 +118,8 @@ class _TimelineItem extends StatelessWidget {
   }
 }
 
-/// Dot and connecting line on the left of each timeline entry.
+/// Dot and connecting line on the left of each timeline entry. The dot pops
+/// in and the line draws downwards once the entry is revealed.
 class _Rail extends StatelessWidget {
   const _Rail({required this.isCurrent, required this.isLast});
 
@@ -129,43 +130,65 @@ class _Rail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final show = AnimatedSection.isRevealed(context);
+    final instant = context.reduceMotion;
     return SizedBox(
       width: width,
       child: Column(
         children: [
           const SizedBox(height: AppSpacing.lg + 4),
-          Container(
-            width: 14,
-            height: 14,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: isCurrent ? AppColors.brandGradient : null,
-              color: isCurrent ? null : AppColors.background,
-              border: isCurrent
-                  ? null
-                  : Border.all(color: AppColors.orange, width: 2),
-              boxShadow: [
-                if (isCurrent)
-                  BoxShadow(
-                    color: AppColors.orange.withValues(alpha: 0.6),
-                    blurRadius: 12,
-                  ),
-              ],
+          TweenAnimationBuilder<double>(
+            tween: Tween(end: show ? 1 : 0),
+            duration:
+                instant ? Duration.zero : const Duration(milliseconds: 700),
+            curve: Curves.elasticOut,
+            builder: (context, scale, child) =>
+                Transform.scale(scale: scale, child: child),
+            child: Container(
+              width: 14,
+              height: 14,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: isCurrent ? AppColors.brandGradient : null,
+                color: isCurrent ? null : AppColors.background,
+                border: isCurrent
+                    ? null
+                    : Border.all(color: AppColors.orange, width: 2),
+                boxShadow: [
+                  if (isCurrent)
+                    BoxShadow(
+                      color: AppColors.orange.withValues(alpha: 0.6),
+                      blurRadius: 12,
+                    ),
+                ],
+              ),
             ),
           ),
           if (!isLast)
             Expanded(
-              child: Container(
-                width: 2,
-                margin: const EdgeInsets.only(top: AppSpacing.xs),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppColors.orange.withValues(alpha: 0.6),
-                      AppColors.border,
-                    ],
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(end: show ? 1 : 0),
+                duration: instant
+                    ? Duration.zero
+                    : const Duration(milliseconds: 1000),
+                curve: Curves.easeInOutCubic,
+                builder: (context, t, child) => FractionallySizedBox(
+                  heightFactor: t,
+                  alignment: Alignment.topCenter,
+                  child: child,
+                ),
+                child: Container(
+                  width: 2,
+                  margin: const EdgeInsets.only(top: AppSpacing.xs),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        AppColors.orange.withValues(alpha: 0.6),
+                        AppColors.border,
+                      ],
+                    ),
                   ),
                 ),
               ),

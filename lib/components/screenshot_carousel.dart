@@ -4,23 +4,20 @@ import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/theme/app_layout.dart';
 
 /// Swipeable screenshots with previous/next buttons and a page indicator.
-/// Used inside project cards and in the full-screen gallery.
+/// Used in the full-screen gallery; the picture swallows taps so the gallery
+/// can close when the backdrop is tapped.
 class ScreenshotCarousel extends StatefulWidget {
   const ScreenshotCarousel({
     super.key,
     required this.images,
     required this.projectName,
     this.initialPage = 0,
-    this.onImageTap,
     this.autofocus = false,
   });
 
   final List<String> images;
   final String projectName;
   final int initialPage;
-
-  /// Called with the current index when a screenshot is tapped.
-  final ValueChanged<int>? onImageTap;
 
   /// Takes keyboard focus so arrow keys change the page (gallery mode).
   final bool autofocus;
@@ -79,9 +76,6 @@ class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
                     cacheHeight: cacheHeight,
                     label:
                         '${widget.projectName} screenshot ${index + 1} of ${widget.images.length}',
-                    onTap: widget.onImageTap == null
-                        ? null
-                        : () => widget.onImageTap!(index),
                   ),
                 ),
                 if (_hasMany) ...[
@@ -90,7 +84,7 @@ class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
                     top: 0,
                     bottom: 0,
                     child: Center(
-                      child: _ArrowButton(
+                      child: CarouselArrowButton(
                         icon: Icons.chevron_left_rounded,
                         tooltip: 'Previous screenshot',
                         onPressed: _page > 0 ? () => _goTo(_page - 1) : null,
@@ -102,7 +96,7 @@ class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
                     top: 0,
                     bottom: 0,
                     child: Center(
-                      child: _ArrowButton(
+                      child: CarouselArrowButton(
                         icon: Icons.chevron_right_rounded,
                         tooltip: 'Next screenshot',
                         onPressed: _page < widget.images.length - 1
@@ -116,7 +110,7 @@ class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
                     left: 0,
                     right: 0,
                     child: Center(
-                      child: _PageIndicator(
+                      child: CarouselPageIndicator(
                         page: _page,
                         count: widget.images.length,
                       ),
@@ -132,44 +126,87 @@ class _ScreenshotCarouselState extends State<ScreenshotCarousel> {
   }
 }
 
-class _Screenshot extends StatelessWidget {
+/// One screenshot sized to its real aspect ratio, so only the picture itself
+/// (not the empty space around it) swallows taps.
+class _Screenshot extends StatefulWidget {
   const _Screenshot({
     required this.path,
     required this.cacheHeight,
     required this.label,
-    this.onTap,
   });
 
   final String path;
   final int cacheHeight;
   final String label;
-  final VoidCallback? onTap;
+
+  @override
+  State<_Screenshot> createState() => _ScreenshotState();
+}
+
+class _ScreenshotState extends State<_Screenshot> {
+  late final ImageStreamListener _listener = ImageStreamListener(
+    (info, _) {
+      final ratio = info.image.width / info.image.height;
+      if (mounted && ratio != _ratio) setState(() => _ratio = ratio);
+    },
+    onError: (_, __) {
+      if (mounted) setState(() => _failed = true);
+    },
+  );
+  ImageStream? _stream;
+  double? _ratio;
+  bool _failed = false;
+
+  ImageProvider get _provider => widget.cacheHeight > 0
+      ? ResizeImage(AssetImage(widget.path), height: widget.cacheHeight)
+      : AssetImage(widget.path);
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _stream?.removeListener(_listener);
+    _stream = _provider.resolve(createLocalImageConfiguration(context))
+      ..addListener(_listener);
+  }
+
+  @override
+  void dispose() {
+    _stream?.removeListener(_listener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final image = Padding(
+    if (_failed) {
+      return const Center(
+        child: Icon(Icons.broken_image_outlined, color: AppColors.textMuted),
+      );
+    }
+    final ratio = _ratio;
+    final image = Image(
+      image: _provider,
+      fit: ratio == null ? BoxFit.contain : BoxFit.fill,
+      semanticLabel: widget.label,
+    );
+    return Padding(
       padding: const EdgeInsets.fromLTRB(
           AppSpacing.xxl, AppSpacing.lg, AppSpacing.xxl, AppSpacing.xxl),
-      child: Image.asset(
-        path,
-        fit: BoxFit.contain,
-        cacheHeight: cacheHeight > 0 ? cacheHeight : null,
-        semanticLabel: label,
-        errorBuilder: (_, __, ___) => const Center(
-          child: Icon(Icons.broken_image_outlined, color: AppColors.textMuted),
+      child: Center(
+        child: GestureDetector(
+          onTap: () {},
+          child: ratio == null
+              ? image
+              : AspectRatio(aspectRatio: ratio, child: image),
         ),
       ),
-    );
-    if (onTap == null) return image;
-    return MouseRegion(
-      cursor: SystemMouseCursors.zoomIn,
-      child: GestureDetector(onTap: onTap, child: image),
     );
   }
 }
 
-class _ArrowButton extends StatelessWidget {
-  const _ArrowButton({
+/// Round prev/next button laid over a carousel.
+class CarouselArrowButton extends StatelessWidget {
+  const CarouselArrowButton({
+    super.key,
     required this.icon,
     required this.tooltip,
     required this.onPressed,
@@ -200,8 +237,10 @@ class _ArrowButton extends StatelessWidget {
   }
 }
 
-class _PageIndicator extends StatelessWidget {
-  const _PageIndicator({required this.page, required this.count});
+/// Dots (or "n / total" for long sets) showing the current page.
+class CarouselPageIndicator extends StatelessWidget {
+  const CarouselPageIndicator(
+      {super.key, required this.page, required this.count});
 
   final int page;
   final int count;

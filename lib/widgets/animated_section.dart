@@ -15,8 +15,27 @@ class AnimatedSection extends StatefulWidget {
   /// Extra wait before the animation starts, used to stagger siblings.
   final Duration delay;
 
+  /// Whether the nearest [AnimatedSection] above [context] has been revealed.
+  /// True when there is none or when motion is reduced, so content that waits
+  /// for it never stays hidden. Registers [context] to rebuild on reveal.
+  static bool isRevealed(BuildContext context) {
+    if (context.reduceMotion) return true;
+    final scope = context.dependOnInheritedWidgetOfExactType<_RevealScope>();
+    return scope?.revealed ?? true;
+  }
+
   @override
   State<AnimatedSection> createState() => _AnimatedSectionState();
+}
+
+class _RevealScope extends InheritedWidget {
+  const _RevealScope({required this.revealed, required super.child});
+
+  final bool revealed;
+
+  @override
+  bool updateShouldNotify(_RevealScope oldWidget) =>
+      revealed != oldWidget.revealed;
 }
 
 class _AnimatedSectionState extends State<AnimatedSection>
@@ -34,6 +53,7 @@ class _AnimatedSectionState extends State<AnimatedSection>
     ),
   );
   ScrollPosition? _position;
+  bool _revealed = false;
 
   @override
   void didChangeDependencies() {
@@ -53,6 +73,7 @@ class _AnimatedSectionState extends State<AnimatedSection>
     final top = box.localToGlobal(Offset.zero).dy;
     if (top < MediaQuery.sizeOf(context).height * 0.92) {
       _position?.removeListener(_checkVisibility);
+      setState(() => _revealed = true);
       _controller.forward();
     }
   }
@@ -67,16 +88,19 @@ class _AnimatedSectionState extends State<AnimatedSection>
   @override
   Widget build(BuildContext context) {
     if (context.reduceMotion) return widget.child;
-    return AnimatedBuilder(
-      animation: _progress,
-      builder: (context, child) => Opacity(
-        opacity: _progress.value,
-        child: Transform.translate(
-          offset: Offset(0, 28 * (1 - _progress.value)),
-          child: child,
+    return _RevealScope(
+      revealed: _revealed,
+      child: AnimatedBuilder(
+        animation: _progress,
+        builder: (context, child) => Opacity(
+          opacity: _progress.value,
+          child: Transform.translate(
+            offset: Offset(0, 28 * (1 - _progress.value)),
+            child: child,
+          ),
         ),
+        child: widget.child,
       ),
-      child: widget.child,
     );
   }
 }

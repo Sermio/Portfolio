@@ -1,0 +1,186 @@
+DATOS PARA LOS TEXTOS DE EXPERIENCIA
+Rellenado a partir de los repos y las fichas de Google Play.
+Marcas: [REPO] visto en el código/commits · [PLAY] ficha de Google Play · [README] README del repo · [DEDUCIDO] lo infiero, confírmalo · [FALTA] no hay dato, lo tienes que poner tú
+
+======================================================================
+PUESTO: Servicios Reunidos S.L. (Sep 2020 – Feb 2022)
+Proyecto: "Missions" = tu TFG (Trabajo de Fin de Grado)
+======================================================================
+Aclaración tuya: el TFG es la app Missions más el portal de campañas. El repo
+Campaigns_web solo contiene un README escrito en 2024 (por eso sus commits son de
+esa fecha); el código original no está ahí. Las fechas ya son coherentes: la app
+se desarrolló entre abril y agosto de 2021, dentro de este puesto.
+
+1. ¿Qué producto o app hiciste?
+   Plataforma de misiones para generar un dataset de imágenes:
+   - App móvil Flutter para los usuarios: login, registro, edición de perfil y
+     contraseña, lista de misiones en tarjetas, cámara y galería para hacer las
+     fotos, guía de fotos y control de errores sin conexión. [REPO TFG/tfg_app]
+   - Portal web de administración en Vue.js: el administrador crea, consulta y
+     borra campañas, define misiones de tipo texto o imagen, elige puntos de
+     venta con filtros combinables, ve los resultados por usuario y puede
+     enviarle un email. [README Campaigns_web]
+   - Detección de objetos con una red neuronal (Darknet/YOLO con scripts
+     Python) para procesar las imágenes. [REPO TFG/darknet]
+2. ¿Para quién? (cliente/sector y cuántos usuarios)
+   Campañas en puntos de venta (PDV) con puntos de recompensa por misión; en el
+   backend hay categorías de PDV como hipermercados. [README, REPO]
+   [FALTA] si era para un cliente real o un prototipo de TFG y cuántos usuarios.
+3. ¿Cuál era tu parte exacta?
+   Todo el TFG, tú solo: app Flutter (44 de 49 commits son tuyos, abril–agosto 2021),
+   portal Vue e integración de Darknet. [REPO, tu aclaración]
+4. Resultados con números
+   ~3.300 líneas de Dart repartidas en 12 pantallas y 4 servicios, sin tests
+   automáticos (solo el test de ejemplo de Flutter). [REPO]
+   [FALTA] nota del TFG, precisión del modelo o campañas de prueba, si las hubo.
+5. Lo más interesante técnicamente
+   Arquitectura:
+   - Capas simples: pantallas en lib/pages, servicios en lib/service y modelo en
+     lib/model. [REPO]
+   - Estado global del usuario con scoped_model (patrón Model/ScopedModel), que
+     notifica a todas las pantallas al cambiar token o perfil. [REPO]
+   - Datos por GraphQL (graphql_flutter) contra un backend tipo Hasura: consultas
+     de PDV por categoría y mutaciones para actualizar perfil y contraseña;
+     autenticación y cambio de contraseña por REST con token Bearer. [REPO]
+   - Sesión persistente con shared_preferences. [REPO]
+   - Validación de formularios con DNI/NIE y email (dni_nie_validator,
+     email_validator), indicadores de carga (flutter_spinkit) y foto de perfil
+     con image_picker. [REPO]
+   Nota: en el código Flutter no veo el envío de las fotos a la red neuronal;
+   [FALTA] cómo llegaban las fotos al modelo (¿backend aparte?).
+6. Tecnologías
+   Flutter, Dart, GraphQL, REST, scoped_model, shared_preferences, image_picker,
+   Vue.js, Python, Darknet/YOLO. [REPO]
+7. ¿Se puede nombrar?
+   El código es tuyo y lo puedes describir, pero no distribuir. El portal está
+   bajo NDA según el README: no nombrar al cliente ni mostrar capturas.
+   En la web enlazas solo el GitHub de Missions, que está bien.
+
+======================================================================
+PUESTO: Freelance (Oct 2024 – May 2025)
+Proyectos: QR scanner, Dappy
+======================================================================
+
+--- QR scanner ---
+1. ¿Qué producto o app hiciste?
+   App Flutter de logística para conductores: login, asignar camión y cisterna
+   (con buscador), escanear códigos QR y enviarlos al backend, y firmar en
+   pantalla (firma guardada como imagen). [REPO qr_app_private]
+2. ¿Para quién?
+   Un cliente de transporte con camiones y cisternas; la app consume la API del
+   propio cliente. [DEDUCIDO de las pantallas y llamadas]
+   [FALTA] nombre/sector del cliente y número de conductores o vehículos.
+3. ¿Cuál era tu parte exacta?
+   Toda la app: 8 commits tuyos, de marzo a abril de 2025 (funcionalidad base,
+   control de errores en las llamadas a la API, logo y nombre, gestión de
+   respuestas del QR, actualización de la librería de QR). [REPO]
+4. Resultados con números
+   ~960 líneas de Dart, 5 pantallas, 4 endpoints (login, escaneo de QR,
+   vehículos, selección de conducción). [REPO]
+   [FALTA] conductores que la usan, tiempo ahorrado, si está en producción.
+5. Lo más interesante técnicamente
+   Token en almacenamiento seguro (flutter_secure_storage) y manejo de errores
+   uniforme en las llamadas HTTP. [REPO]
+6. Tecnologías
+   Flutter, Provider, http, flutter_secure_storage, qr_code_scanner. [REPO]
+7. ¿Se puede nombrar?
+   Repo privado. [FALTA] permiso para nombrar al cliente. Mejor no nombrarlo.
+
+--- Dappy ---
+1. ¿Qué producto o app hiciste?
+   Colaboraste en Dappy, app Android nativa en Kotlin para encontrar amigos
+   para tu perro y descubrir rutas de paseo. [PLAY]
+2. ¿Para quién?
+   Dueños de perros. Publicada por DappyDogs. [PLAY]
+3. ¿Cuál era tu parte exacta?
+   Contribución parcial (8 commits, ene–mar 2025), sobre una app de ~85 ficheros
+   Kotlin con chat, mapas, matching, notificaciones e histórico. [REPO]
+   Lo tuyo: pantalla de onboarding con imágenes en español e inglés, botón
+   redondeado, icono de información en la home con textos traducidos,
+   zoom de la foto del perro, validación de contraseña al crear cuenta y foto de
+   perfil del usuario. [REPO]
+4. Resultados con números
+   100+ descargas en Google Play. [PLAY]
+   [FALTA] si hay algo más que quieras destacar (la app sigue actualizándose).
+5. Lo más interesante técnicamente
+   Textos y recursos bilingües (es/en) en todo el onboarding. [REPO]
+6. Tecnologías
+   Kotlin, Android nativo (Fragments, XML), Firebase (google-services.json). [REPO]
+7. ¿Se puede nombrar?
+   Repo privado; la app es pública en Google Play, puedes enlazarla.
+   Recomendación: decir "contribuí" y no "desarrollé".
+
+======================================================================
+PUESTO: Freelance (Feb 2022 – Abr 2022)
+Proyectos: Subasta Forestal, SBC Gasolineras
+======================================================================
+
+--- Subasta Forestal ---
+1. ¿Qué producto o app hiciste?
+   App para la compra y venta de madera. [PLAY]
+2. ¿Para quién?
+   Compradores y vendedores de madera. [DEDUCIDO] [FALTA] el sector/cliente concreto.
+3. ¿Cuál era tu parte exacta?
+   Desarrollada y publicada por ti (según tu texto actual). Publicada por
+   Kappowsky. [PLAY] [FALTA] si fue de principio a fin tú solo y si incluye backend.
+4. Resultados con números
+   500+ descargas. Última actualización: 20 ago 2024. [PLAY]
+5. Lo más interesante técnicamente
+   [FALTA] (por ejemplo: subastas, notificaciones, pagos, imágenes).
+6. Tecnologías
+   Flutter (según tu texto actual). [FALTA] backend.
+7. ¿Se puede nombrar?
+   Sí, es pública. Enlace: https://play.google.com/store/apps/details?id=note.sbs_app
+
+--- SBC Gasolineras ---
+1. ¿Qué producto o app hiciste?
+   Colaboraste en una app Android para consultar en tiempo real los precios de
+   todas las gasolineras de la red SBC. [PLAY]
+2. ¿Para quién?
+   Clientes de la red de gasolineras SBC. [PLAY]
+3. ¿Cuál era tu parte exacta?
+   Arreglos de errores sobre una app existente (según tu mensaje). No hay repo
+   que lo confirme. Publicada por Kappowsky. [PLAY]
+   [FALTA] qué errores arreglaste y qué cambió para el usuario.
+4. Resultados con números
+   5.000+ descargas, 3,6 estrellas sobre 39 valoraciones. Última actualización:
+   28 ago 2024. [PLAY]
+5. Lo más interesante técnicamente
+   [FALTA]
+6. Tecnologías
+   Java/Kotlin nativo (según tu texto actual). [FALTA] confirmar.
+7. ¿Se puede nombrar?
+   Sí, es pública. Enlace: https://play.google.com/store/apps/details?id=es.android.sbcgasolineras
+
+======================================================================
+PUESTO: ADCOMUNIDAD (Jun 2025 – actualidad)
+Fuente: tu PUESTO_ADCOMUNIDAD.md (no he visto el código)
+======================================================================
+Resumen: dos apps Flutter (Android e iOS) publicadas en Google Play,
+ADCOMUNIDAD Propietarios y ADCOMUNIDAD Administradores, para gestionar
+comunidades de vecinos. Las desarrollaste tú solo, con 7 idiomas, más de 700
+descargas y notificaciones push por temas; ~370 archivos Dart. Clean Architecture,
+BLoC y GetIt; sistema de diseño compartido entre las dos apps.
+Comprobado en Google Play: Propietarios 500+ descargas y Administradores 10+.
+Tu .md dice "más de 700": Play no lo respalda (suma ~510); si cuentas iOS u otra
+fuente, indícalo; si no, usa 500+.
+Pendiente: usuarios activos (opcional) y confirmar la cifra de tests y si hay
+versión en App Store antes de citarlas. Detalle completo en tu .md.
+
+======================================================================
+PENDIENTES
+======================================================================
+- Sotelo S.L. (May 2022 – Oct 2024): usa la plantilla de 7 puntos.
+
+--- Museo das Peregrinacións (Freelance 2022) ---
+App para facilitar la visita a la exposición del museo. Publicada por Xunta de
+Galicia, 500+ descargas, última actualización 13 sep 2024. [PLAY]
+Tu parte: corrección de errores, según recuerdas (no hay repo). No te atribuyas las descargas.
+https://play.google.com/store/apps/details?id=gal.xunta.museodasperegrinacions
+
+DISCREPANCIAS A REVISAR EN LOS TEXTOS ACTUALES
+- Freelance 2024-25 dice "QR scanner ... y otros proyectos": ahora puedes añadir
+  Dappy como colaboración.
+- Freelance 2022 dice "Subasta Forestal ... 500 descargas": coincide con Google Play (500+).
+- SBC Gasolineras tiene 5.000+ descargas: sirve de cifra, pero fue una app que
+  ya existía y tú solo arreglaste errores. Úsala con cuidado para no atribuirte el total.

@@ -31,8 +31,8 @@ final resumeUri = Uri.parse(
     "https://drive.google.com/file/d/1A4HtvJNK7FY0YaaYnpCt_j0oBg6IaX2W/view?usp=sharing");
 
 const aboutMeParagraphs = [
-  "I am a Graduate in Computer Engineering with experience in both freelance and corporate development. I have worked both in teams and independently, acquiring skills in coordination, communication, and client management.",
-  "I am eager to improve my skills in front-end development and contribute to innovative projects within a dynamic and productive corporate environment.",
+  "Flutter Lead Developer based in A Coruña. I design and build cross-platform apps end to end: architecture, UI, Firebase, testing and releases on Google Play and the App Store. At ADCOMUNIDAD I built two production apps on my own, in 7 languages.",
+  "Before that I worked in teams and as a freelancer on web and mobile products, talking directly with clients. I like clean architecture, accessible interfaces and using AI tools to ship faster.",
 ];
 
 const experienceList = [
@@ -41,52 +41,52 @@ const experienceList = [
     company: "ADCOMUNIDAD · Spain",
     period: "Jun 2025 – Present",
     description:
-        "Project: leading the design and development of cross-platform mobile apps, from initial architecture to launch. Delivered: scalable modular frameworks, reusable UI components, REST API and Firebase integrations, testing, CI/CD and releases to Google Play and the App Store. Tools: Flutter, Provider, BLoC, Firebase and AI coding assistants.",
+        "I designed and developed, on my own, ADCOMUNIDAD Propietarios and ADCOMUNIDAD Administradores, two Flutter apps for managing residential communities, used by owners and property administrators on the ADSOLUCIONES platform. Both ship in 7 languages with push notifications, biometric login and adjustable text size, and have passed 700 downloads across the stores. Clean Architecture with BLoC and GetIt, a shared design system and layout tests for accessibility. Stack: Flutter, BLoC, GetIt, Firebase Cloud Messaging.",
   ),
   Experience(
     role: "Apps Developer",
     company: "Freelance",
     period: "Oct 2024 – May 2025",
     description:
-        "Project: design and development of mobile apps for different clients. Delivered: cross-platform (Android and iOS) apps, such as a QR scanner that sends the scanned data to a backend, among other projects. Tools: Flutter and Kotlin.",
+        "I built a logistics app for a transport client: drivers log in, assign a truck and a tank trailer, scan QR codes that are sent to the client’s API and sign on screen. I also contributed to Dappy, a native Android app to find friends for your dog and discover walking routes, adding its bilingual onboarding, password validation and photo zoom. Stack: Flutter and Kotlin.",
   ),
   Experience(
     role: "Software Engineer and Consultant",
     company: "Sotelo S.L. · Spain",
     period: "May 2022 – Oct 2024",
     description:
-        "Project: software development and consulting in a multidisciplinary team, with direct customer communication. Delivered: web and mobile solutions, coordinating projects and managing the team. Tools: Vue.js, Python, React Native and SCRUM, all learned on the job.",
+        "I developed software and advised clients in a multidisciplinary team, talking directly with customers. I delivered web and mobile solutions and coordinated projects and the team. Stack: Vue.js, Python, React Native and SCRUM.",
   ),
   Experience(
     role: "Flutter Apps Developer",
     company: "Freelance",
     period: "Feb 2022 – Apr 2022",
     description:
-        "Project: launch of my own app plus maintenance of existing ones. Delivered: I developed and released the \"Subasta Forestal\" app, with over 500 downloads, and handled the updates of the \"SBC Gasolineras\" and \"Museo das Peregrinacións\" apps. Tools: Flutter for the new app, native Java/Kotlin for the updates.",
+        "I developed and released \"Subasta Forestal\", a wood buying and selling app that passed 500 downloads, and fixed bugs in two existing Android apps: \"SBC Gasolineras\" (real-time fuel prices) and \"Museo das Peregrinacións\" (visitor guide for the museum). Stack: Flutter for the new app, native Java/Kotlin for the fixes.",
   ),
   Experience(
-    role: "Flutter Developer (Internship)",
+    role: "Flutter Developer",
     company: "Servicios Reunidos S.L. · Spain",
     period: "Sep 2020 – Feb 2022",
     description:
-        "Project: my Bachelor’s Thesis, an app that extracts information from pictures. Delivered: a Flutter app powered by a neural network, plus a companion website. Tools: Flutter and Vue.js.",
+        "I built a mission-based platform to collect image datasets in retail points of sale: a Flutter app (login, profile, camera and mission list on a GraphQL backend), an admin web portal in Vue.js to create campaigns and review results, and image analysis with a YOLO neural network. Stack: Flutter, GraphQL, Vue.js and Python.",
   ),
 ];
 
 const techSkills = [
-  Skill(name: "Flutter", percent: 0.95),
-  Skill(name: "Dart", percent: 0.95),
+  Skill(name: "Flutter", percent: 0.9),
+  Skill(name: "Dart", percent: 0.9),
   Skill(name: "Git", percent: 0.9),
   Skill(name: "AI tools", percent: 0.85),
-  Skill(name: "Firebase", percent: 0.75),
-  Skill(name: "SCRUM", percent: 0.75),
+  Skill(name: "Firebase", percent: 0.8),
+  Skill(name: "SCRUM", percent: 0.7),
   Skill(name: "JavaScript", percent: 0.7),
   Skill(name: "Vue", percent: 0.7),
   Skill(name: "Python", percent: 0.65),
   Skill(name: "TypeScript", percent: 0.65),
   Skill(name: "React Native", percent: 0.6),
   Skill(name: "Kotlin", percent: 0.6),
-  Skill(name: "Java", percent: 0.55),
+  Skill(name: "Java", percent: 0.45),
 ];
 
 const softSkills = [
@@ -114,6 +114,7 @@ const projectTechnologies = [
   "Firebase",
   "Riverpod",
   "Provider",
+  "BLoC",
   "Flame",
   "Gemini",
   "SQLite",
@@ -130,6 +131,18 @@ List<String> _screenshots(String folder, int count, {String ext = "jpg"}) =>
     [for (var i = 1; i <= count; i++) "assets/images/$folder/$i.$ext"];
 
 final projectList = <Project>[
+  Project(
+      name: "ADCOMUNIDAD Propietarios",
+      description:
+          "Flutter app for homeowners to manage their community: properties, notices, receipts and accounting with charts, meetings, contracts, documents with a PDF viewer, consumption and contact with the administrator. Push notifications by topic with Firebase Cloud Messaging, biometric login, adjustable text size and 7 languages. Clean Architecture with BLoC and GetIt, tested with mockito and bloc_test. Built on my own for the ADSOLUCIONES platform.",
+      link: "https://github.com/Sermio/AppPropietarios_private",
+      images: _screenshots("ADCOMUNIDADPropietarios", 8)),
+  Project(
+      name: "ADCOMUNIDAD Administradores",
+      description:
+          "Flutter app for property administrators to manage several communities from one place: properties, owners, suppliers, contracts and notices with attachments. Messaging through WhatsApp, phone call or email, incoming call detection that identifies the owner or supplier, and push notifications with Firebase Cloud Messaging. Same Clean Architecture, BLoC and design system as the owners' app, in 7 languages.",
+      link: "https://github.com/Sermio/AppAdministradores_private",
+      images: _screenshots("ADCOMUNIDADAdministradores", 7)),
   Project(
       name: "VaCar",
       description:

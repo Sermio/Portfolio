@@ -10,12 +10,16 @@ class GlassCard extends StatefulWidget {
     required this.child,
     this.padding = const EdgeInsets.all(AppSpacing.lg),
     this.hoverable = false,
+    this.highlighted = false,
     this.radius = AppRadius.lg,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
   final bool hoverable;
+
+  /// Keeps the hover look on (e.g. the selected card of a list).
+  final bool highlighted;
   final double radius;
 
   @override
@@ -27,8 +31,8 @@ class _GlassCardState extends State<GlassCard> {
 
   @override
   Widget build(BuildContext context) {
-    final active = widget.hoverable && _hovered;
-    final lift = active && !context.reduceMotion;
+    final active = (widget.hoverable && _hovered) || widget.highlighted;
+    final lift = widget.hoverable && _hovered && !context.reduceMotion;
     return MouseRegion(
       onEnter: widget.hoverable ? (_) => setState(() => _hovered = true) : null,
       onExit: widget.hoverable ? (_) => setState(() => _hovered = false) : null,
