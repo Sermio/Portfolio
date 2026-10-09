@@ -10,7 +10,7 @@ const location = "A Coruña, Spain";
 const heroHeadlineStart = "I build cross-platform apps with ";
 const heroHeadlineHighlight = "Flutter";
 const heroSubtitle =
-    "Computer Engineer leading mobile products end to end: architecture, UI/UX, Firebase, testing and releases to Google Play and the App Store.";
+    "Computer Engineer who takes mobile apps from idea to production. I design the architecture, build polished Flutter and Firebase products, test them, and ship them to Google Play and the App Store.";
 const avatarAsset = "assets/images/img.png";
 
 /// Start of my professional career, used for the "years of experience" stat.
