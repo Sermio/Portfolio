@@ -136,19 +136,26 @@ final projectList = <Project>[
       description:
           "Flutter app for homeowners to manage their community: properties, notices, receipts and accounting with charts, meetings, contracts, documents with a PDF viewer, consumption and contact with the administrator. Push notifications by topic with Firebase Cloud Messaging, biometric login, adjustable text size and 7 languages. Clean Architecture with BLoC and GetIt, tested with mockito and bloc_test. Built on my own for the ADSOLUCIONES platform.",
       link: "https://github.com/Sermio/AppPropietarios_private",
-      images: _screenshots("ADCOMUNIDADPropietarios", 8)),
+      images: _screenshots("ADCOMUNIDADPropietarios", 8),
+      icon: "assets/icons/adcomunidad_propietarios.png",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.adcomunidad.app_propietarios"),
   Project(
       name: "ADCOMUNIDAD Administradores",
       description:
           "Flutter app for property administrators to manage several communities from one place: properties, owners, suppliers, contracts and notices with attachments. Messaging through WhatsApp, phone call or email, incoming call detection that identifies the owner or supplier, and push notifications with Firebase Cloud Messaging. Same Clean Architecture, BLoC and design system as the owners' app, in 7 languages.",
       link: "https://github.com/Sermio/AppAdministradores_private",
-      images: _screenshots("ADCOMUNIDADAdministradores", 7)),
+      images: _screenshots("ADCOMUNIDADAdministradores", 7),
+      icon: "assets/icons/adcomunidad_administradores.jpg",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.adcomunidad.app_administradores"),
   Project(
       name: "VaCar",
       description:
           "Multi-tenant SaaS built with Flutter and Firebase for livestock veterinary clinics. Office staff create field work orders, vets mark when they are on the way, complete visits with notes and treatments, collect on-screen signatures and generate PDF invoices and delivery notes. Includes a team chat with voice notes, push notifications with Cloud Functions, roles via Firebase Auth custom claims (super-admin, admin, vet, office), staff licences per plan and clinic statistics. Architecture: Riverpod with MVVM and repositories.",
       link: "https://github.com/Sermio/VaCar",
-      images: _screenshots("VetApp", 9)),
+      images: _screenshots("VetApp", 9),
+      icon: "assets/icons/vetapp.webp"),
   Project(
       name: "impoWallet",
       description:
@@ -160,7 +167,10 @@ final projectList = <Project>[
       description:
           "The Monster Hunter Assistant is a mobile application developed in Flutter that allows users to explore and discover information about monsters and decorations from the popular game Monster Hunter Wilds. The app features an intuitive interface that enables users to easily access details about the monsters, their abilities, and the game maps.",
       link: "https://github.com/Sermio/MHWilds_App",
-      images: _screenshots("MHWilds", 13)),
+      images: _screenshots("MHWilds", 13),
+      icon: "assets/icons/mhwilds.png",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.app.mhwilds_assistant"),
   // Project(
   //     name: "Fill Good / Hidromatic",
   //     description:
@@ -172,7 +182,8 @@ final projectList = <Project>[
       description:
           "Android app built with Flutter that photographs veterinary lab tickets (VetScan VS2), reads them on-device with OCR and appends each ticket as a row to an Excel workbook in OneDrive through Microsoft Graph. Microsoft sign-in with AppAuth and PKCE, OneDrive browser, batch and continuous scanning, guided correction of doubtful readings, pending drafts in secure storage and duplicate-safe retries. Covered by unit and widget tests.",
       link: "https://github.com/Sermio/Lab_scan",
-      images: _screenshots("LabScan", 4)),
+      images: _screenshots("LabScan", 4),
+      icon: "assets/icons/labscan.png"),
   // Project(
   //     name: "Bacttle",
   //     description:
@@ -184,13 +195,15 @@ final projectList = <Project>[
       description:
           "Match-3 bubble popping game built with Flutter, Flame and Riverpod. Endless campaign with procedurally themed chapters and bosses, special bubbles (line, colour and cross bombs, wildcards), ice, locks, stones and chests, daily challenge with streaks, an Expedition mode with charms, a shop with tools, selectable skins, tutorial and local saves.",
       link: "https://github.com/Sermio/bubble_game",
-      images: _screenshots("BubbleBlast", 5)),
+      images: _screenshots("BubbleBlast", 5),
+      icon: "assets/icons/bubbleblast.webp"),
   Project(
       name: "Cata",
       description:
           "Flutter and Firebase app to organise blind wine tastings. The organiser creates a tasting with the wines (alias, description, price and photo in Firebase Storage); participants rank them blind with comments, and once the tasting is closed everyone sees the aggregated ranking and can reveal the real labels. Provider for state, Cloud Firestore in real time and web deployment on Firebase Hosting.",
       link: "https://github.com/Sermio/wine_app",
-      images: _screenshots("WineApp", 6)),
+      images: _screenshots("WineApp", 6),
+      icon: "assets/icons/wine.webp"),
   Project(
       name: "Smart Climate Station",
       description:
@@ -202,7 +215,8 @@ final projectList = <Project>[
       description:
           "Minimalist recurring-task tracker built with Flutter. Daily, weekly and monthly tasks on a pending/completed board that renew automatically, completion statistics with motivational messages, searchable history, scheduled local notifications and seven languages. Data is stored locally on the device.",
       link: "https://github.com/Sermio/task_app",
-      images: _screenshots("LazyTasking", 6)),
+      images: _screenshots("LazyTasking", 6),
+      icon: "assets/icons/lazytasking.webp"),
   Project(
       name: "LiftTrack",
       description:
@@ -256,7 +270,10 @@ final projectList = <Project>[
       description:
           "The WorldShift Tribute Application, built with Flutter, is a tribute to the game WorldShift (2008), designed as a comprehensive interactive catalog of in-game items. It offers users an intuitive way to browse, search, and filter through a vast collection of equipment. With a strong emphasis on accuracy and usability, it allows for detailed item exploration, making it an invaluable tool for both casual players and dedicated strategists.",
       link: "https://github.com/Sermio/WD_filter",
-      images: _screenshots("Worldshift", 8)),
+      images: _screenshots("Worldshift", 8),
+      icon: "assets/icons/worldshift.png",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.smt_dev.worldshift_filter"),
   Project(
       name: "Diseños",
       description:
@@ -274,7 +291,10 @@ final projectList = <Project>[
       description:
           "The Subasta Forestal application, built with Flutter, is an intuitive technology platform designed for those interested in buying or selling wood. The visual design of the app was provided by the client to be followed accordingly.\n This application is aimed at both PROPERTY OWNERS (individuals and forestry communities) and BUYERS (self-employed individuals and companies).",
       link: "https://github.com/Sermio/Subasta_forestal",
-      images: _screenshots("SubastaForestal", 4, ext: "png")),
+      images: _screenshots("SubastaForestal", 4, ext: "png"),
+      icon: "assets/icons/subasta_forestal.png",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=note.sbs_app&hl=es_419"),
   Project(
       name: "Shoes",
       description:

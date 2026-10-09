@@ -9,6 +9,7 @@ import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/theme/app_layout.dart';
 import 'package:portfolio/utils/links.dart';
 import 'package:portfolio/utils/project_search.dart';
+import 'package:portfolio/widgets/project_icon.dart';
 import 'package:portfolio/widgets/tech_chip.dart';
 
 /// Large stage for one project: title, technologies, description, actions and
@@ -53,10 +54,20 @@ class ProjectShowcase extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(project.name,
-                    style: size.isMobile
-                        ? textTheme.headlineSmall
-                        : textTheme.headlineMedium),
+                Row(
+                  children: [
+                    Flexible(
+                      child: Text(project.name,
+                          style: size.isMobile
+                              ? textTheme.headlineSmall
+                              : textTheme.headlineMedium),
+                    ),
+                    if (project.icon != null) ...[
+                      const SizedBox(width: AppSpacing.md),
+                      ProjectIcon(project: project, size: 44),
+                    ],
+                  ],
+                ),
                 const SizedBox(height: AppSpacing.md),
                 Wrap(
                   spacing: AppSpacing.sm,

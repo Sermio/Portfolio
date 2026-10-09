@@ -6,6 +6,7 @@ import 'package:portfolio/theme/app_colors.dart';
 import 'package:portfolio/theme/app_layout.dart';
 import 'package:portfolio/utils/project_search.dart';
 import 'package:portfolio/widgets/glass_card.dart';
+import 'package:portfolio/widgets/project_icon.dart';
 import 'package:portfolio/widgets/tech_chip.dart';
 
 /// Compact project tile: browsable screenshots, name, technologies and a short
@@ -69,10 +70,19 @@ class ProjectCard extends StatelessWidget {
                     ),
                     // Arrows bring the next photo to the middle; tapping the
                     // middle photo selects the project like the rest of the card.
-                    child: CoverFlowCarousel(
-                      images: project.images,
-                      projectName: project.name,
-                      onCenterTap: onTap,
+                    child: Stack(
+                      children: [
+                        CoverFlowCarousel(
+                          images: project.images,
+                          projectName: project.name,
+                          onCenterTap: onTap,
+                        ),
+                        Positioned(
+                          right: AppSpacing.md,
+                          bottom: AppSpacing.md,
+                          child: ProjectIcon(project: project),
+                        ),
+                      ],
                     ),
                   ),
                 ),

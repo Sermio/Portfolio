@@ -19,6 +19,20 @@ void main() {
     });
   }
 
+  test('icons exist and store links point to Google Play', () {
+    for (final project in projectList) {
+      final icon = project.icon;
+      if (icon != null) {
+        expect(File(icon).existsSync(), isTrue, reason: '$icon is missing');
+      }
+      final store = project.playStoreUrl;
+      if (store != null) {
+        expect(icon, isNotNull, reason: '${project.name} needs an icon');
+        expect(store, startsWith('https://play.google.com/store/apps/'));
+      }
+    }
+  });
+
   test('project names are unique', () {
     final names = projectList.map((p) => p.name).toList();
     expect(names.toSet().length, names.length);
